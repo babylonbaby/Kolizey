@@ -1,0 +1,49 @@
+/**
+* иконка вызова поиска будет в пределах поля ввода справа
+*/
+.ext-select-search {
+    /*margin-left: -14px;*/
+}
+
+.ext-select-search-single-element {
+    padding-right: 16px;
+}
+
+.ext-select-search-single {
+    position: absolute;
+}
+
+div.ext-select input {
+    /*width: 95%;*/
+}
+
+div.ext-select-search-multi {
+    background: #7EC3FF;
+    padding: 0;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    right: 2px;
+    margin-top: -10px;
+    line-height: 20px;
+}
+
+div.element-wrapper-ext-select-multi {
+    position: relative;
+    padding-right: 26px;
+}
+
+div.element-wrapper-ext-select-multi .token-input {
+    display: none;
+}
+
+div.element-wrapper-ext-select-multi div.ext-select-wrapper {
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+div.element-wrapper-ext-select-multi .tokenfield {
+    min-height: 24px;
+}
+

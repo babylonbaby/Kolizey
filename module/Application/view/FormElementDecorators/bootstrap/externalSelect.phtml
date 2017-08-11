@@ -1,0 +1,84 @@
+<?php
+//$this->headScript()->appendFile($this->basePath('../../../../../vendor/rn5/core/assets/js/externalSelect.js');
+//$this->headLink()->appendFile($this->basePath('../../../../../vendor/rn5/core/assets/js/externalSelect.css');
+
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$id = $element->getAttribute('id');
+$type = $element->getAttribute('type');
+
+$labelAttributes = $element->getLabelAttributes();
+$labelAttributes['class'] = 'control-label col-sm-4 ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
+$element->setLabelAttributes($labelAttributes);
+$label = ($element->getLabel()) ? $this->formLabel($element) : '';
+
+$name = $element->getName();
+$value = $element->getValue();
+$errorMsg = $errClass = '';
+if (isset($options['markupError'])) {
+    $errorMsg = $options['markupError'];
+    $element->setAttribute('class', $element->getAttribute('class') . ' input-error-element');
+}
+
+
+echo "<div class='form-group wrap-element-row wrap-element-row-$type'>";
+if ($mode == 'view') {
+    printf('<span id="info-%s" class="info-%s %s">%s</span>',
+        $id, $id,
+        $element->getAttribute('class'),
+        (isset($value['value']) ? $value['value'] : '')
+    );
+    echo $errorMsg;
+
+    $element->setName($name.'[id]');
+    $element->setValue((isset($value['id']) ? $value['id'] : ''));
+    echo $this->formHidden($element);
+} else {
+    $input = new \Zend\Form\Element\Text();
+    $input->setName($name.'[value]')
+        ->setAttribute('readonly', 'readonly')
+        ->setValue((isset($value['value']) ? $value['value'] : ''))
+        ->setAttribute('id', $id . '-value')
+        ->setAttribute('class', 'form-control');
+//        ->setAttribute('style', 'width: 94%; display: inline-block;');
+
+    echo $errorMsg;
+
+    $hidden = new \Zend\Form\Element\Hidden();
+    $hiddenName = $name.'[id]';
+    $hidden->setName($name.'[id]')
+        ->setValue((isset($value['id']) ? $value['id'] : ''))
+        ->setAttribute('id', $id . '-id');
+
+    $onClick='';
+    if (($clickHandler=$element->getOption('clickHandler')) == null) {
+        $clickHandler = '';
+    }
+
+    $iconClass = 'glyphicon glyphicon-search';
+    if (($optIconClass = $element->getOption('icon-class')) != null) {
+        $iconClass = $optIconClass;
+    }
+    $markup = sprintf('<div id="ext-select-%s" class="ext-select ext-select-search-single-element ext-select-%s %s">'.
+        '<div class="input-group">%s%s'.
+        '<span class="input-group-addon">'.
+        '<span class="ext-select-search ext-select-search-single %s cursor-pointer" data-clickHandler="%s"></span>'.
+        '</span></div></div>',
+        $id, $id,
+        $element->getAttribute('class'),
+        $this->formText($input),
+        $this->formHidden($hidden),
+        $iconClass,
+        $clickHandler
+    );
+
+    echo $label . '<div class="col-sm-8 wrap-element-body">' . $markup . '</div>';
+}
+echo '</div>';

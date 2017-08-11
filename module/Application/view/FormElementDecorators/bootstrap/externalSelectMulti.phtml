@@ -1,0 +1,85 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 04.03.17
+ * Time: 0:37
+ */
+
+/**
+ * формируем данные для рендеринга элемента через tokenfield плагин
+ * @param \Zend\Form\Element $element
+ * @return array
+ */
+$prepareElementData = function($element) {
+    $value = $element->getValue();
+    $valueList = [];
+    $tokenFieldData = [];
+    if (($separator = $element->getOption('separator')) == null) {
+        $separator = '@@';
+    }
+    if (is_array($value)) {
+        foreach ($value as $item) {
+            $valueList[] = json_encode($item);
+            $tokenFieldData[] = $item;
+        }
+        $element->setValue(implode($separator, $valueList));
+    } elseif ($value != '') {
+        $valueArr = explode($separator, $value);
+        foreach ($valueArr as $valueItem) {
+            $tokenFieldData[] = json_decode($valueItem);
+        }
+    }
+
+    $element->setAttribute('data-tokens', json_encode($tokenFieldData));
+    $element->setAttribute('data-need-tokenfield', true);
+    $element->setAttribute('data-separator', $separator);
+    $element->setAttribute('class', $element->getAttribute('class').' ext-select-multi form-control');
+};
+
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$id = $element->getAttribute('id');
+
+
+$labelAttributes = $element->getLabelAttributes();
+$labelAttributes['class'] = 'control-label col-sm-4 ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
+$element->setLabelAttributes($labelAttributes);
+$label = ($element->getLabel()) ? $this->formLabel($element) : '';
+
+$name = $element->getName();
+$value = $element->getValue();
+$prepareElementData($element);
+
+echo '<div class="form-group element-wrapper element-wrapper-ext-select-multi">';
+if ($mode == 'view') {
+    echo $label . '<div class="col-sm-8 wrap-element-body">' . $this->formText($element) . '</div>';
+} else {
+    $iconClass = 'glyphicon glyphicon-search';
+    if (($optIconClass = $element->getOption('icon-class')) != null) {
+        $iconClass = $optIconClass;
+    }
+
+    if (($clickHandler=$element->getOption('clickHandler')) == null) {
+        $clickHandler = '';
+    }
+
+    $markup = sprintf('<div id="ext-select-multi-%s">'.
+        '<div class="input-group">%s'.
+        '<span class="input-group-addon ext-select-search"  data-clickHandler="%s"><span class="cursor-pointer %s"></span></span>'.
+        '</div></div>',
+        $id,
+        $this->formText($element),
+        $clickHandler,
+        $iconClass
+    );
+    echo $label . '<div class="col-sm-8 wrap-element-body">' . $markup . '</div>';
+}
+echo '</div>';

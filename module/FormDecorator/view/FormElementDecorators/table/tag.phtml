@@ -1,0 +1,26 @@
+<?php
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$options = $this->get('options');
+if (isset($options['tag']) == false) {
+    $msg = sprintf(
+        'Не определен ключ tag в опциях для FormElementView в ветке %s элемента типа %s с именем %s',
+        $this->get('branch'),
+        get_class($element),
+        $element->getName()
+    );
+    throw new \Exception($msg);
+}
+$tag = $options['tag'];
+$attr = ['class', 'style'];
+
+echo "<$tag ";
+foreach($attr as $attName) {
+    if (isset($options[$attName]) == false) {
+        continue;
+    }
+    echo $attName . '="' . $options[$attName] . '" ';
+}
+echo '>';
+echo $this->get('content');
+echo '</' . $tag .'>';

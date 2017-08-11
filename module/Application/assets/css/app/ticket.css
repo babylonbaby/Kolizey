@@ -1,0 +1,34 @@
+.printLeftPart {
+    float: left;
+    width: 250px;
+}
+
+.printLeftPart .photo {
+    width: 210px;
+    height: 280px;
+    margin: 15px;
+    border: 1px solid;
+}
+
+.printLeftPart .qr-code {
+    width: 90px;
+    height: 90px;
+    margin: 15px;
+    border: 0 solid;
+}
+
+.printLeftPart img.photo {
+    /*width: 210px;*/
+    /*height: 280px;*/
+    margin: 0;
+    border: 0;
+}
+
+.printLeftPart img.qr-code {
+    margin: 0;
+    border: 0;
+}
+
+form .info-base_base__sign_ {
+    border: none;
+}

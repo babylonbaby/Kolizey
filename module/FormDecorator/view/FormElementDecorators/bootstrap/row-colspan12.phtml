@@ -1,0 +1,20 @@
+<?php
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+
+$labelAttributes = $element->getLabelAttributes();
+$labelAttributes['class'] = 'control-label col-sm-4 ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
+$element->setLabelAttributes($labelAttributes);
+
+$classAtt = $element->getAttribute('class');
+$classAtt = 'form-control ' . $classAtt;
+$element->setAttribute('class', $classAtt);
+
+$label = ($element->getLabel()) ? $this->formLabel($element) : '';
+$markup = $this->formBranchRender($element, 'default', $this->get('mode'));
+$type = $element->getAttribute('type');
+?>
+<div class="form-group wrap-element-row wrap-element-row-<?php echo $type; ?>">
+    <?php echo $label; ?>
+    <div class="col-sm-12 wrap-element-body"><?php echo $markup; ?></div>
+</div>

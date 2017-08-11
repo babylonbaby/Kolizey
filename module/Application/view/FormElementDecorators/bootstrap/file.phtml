@@ -1,0 +1,133 @@
+<?php
+use Zend\Form\Element\Button;
+use Zend\Form\Element\Hidden;
+
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+
+$labelAttributes = $element->getLabelAttributes();
+$labelAttributes['class'] = 'control-label col-sm-4 ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
+$element->setLabelAttributes($labelAttributes);
+
+$label = ($element->getLabel()) ? $this->formLabel($element) : '';
+$markup = $this->formFile($element);
+$error = $this->formElementErrors($element);
+$type = $element->getAttribute('type');
+
+
+$buttonAppend = new Button($element->getName() . '-append');
+$buttonAppend->setAttribute('class', 'file-append-button');
+$buttonAppend->setAttribute('style', 'display: none;');
+$buttonAppend->setLabel("Прикрепить");
+$buttonAppend = $this->formElement($buttonAppend);
+
+$buttonCancel = new Button($element->getName() . '-cancel');
+$buttonCancel->setAttribute('class', 'file-cancel-button');
+$buttonCancel->setAttribute('style', 'display: none;');
+$buttonCancel->setLabel("Отмена");
+$buttonCancel = $this->formElement($buttonCancel);
+
+$buttonDelete = new Button($element->getName() . '-delete');
+$buttonDelete->setAttribute('class', 'file-delete-button');
+$buttonDelete->setAttribute('style', 'display: none;');
+$buttonDelete->setLabel("Удалить");
+$buttonDelete = $this->formElement($buttonDelete);
+
+$idImage = new Hidden($element->getName() . '-image');
+$idImage->setAttribute('class', 'id-file');
+$idImage = $this->formElement($idImage);
+
+if ($this->get('mode') != 'view') {
+    echo <<<HTML
+    <script>
+    $(document).ready(function() {
+            var fileUploadInput = $("input[name='{$element->getAttribute('name')}']");
+            var fileUploadDiv = $(fileUploadInput).parent();
+
+            $(fileUploadInput).on('change', function() {
+
+                fileUploadDiv.find('.file-append-button').show();
+                fileUploadDiv.find('.file-cancel-button').show();
+
+                fileUploadInput.hide().attr("disabled", true);
+
+                var el = $(this),
+                fileName;
+                if (el.val().lastIndexOf('\\\\')) {
+                var i = el.val().lastIndexOf('\\\\') + 1;
+                } else {
+                var i = el.val().lastIndexOf('/') + 1;
+                }
+                fileName = el.val().slice(i);
+                $("<p></p>").addClass('upload-filename')
+                    .html(fileName)
+                    .prependTo(fileUploadDiv);
+
+                fileUploadDiv.find('.file-cancel-button').click(function (e) {
+                    fileUploadInput.show().attr("disabled", false);
+                    fileUploadDiv.find('.file-append-button').hide().unbind('click');
+                    fileUploadDiv.find('.file-cancel-button').hide().unbind('click');
+                    fileUploadDiv.find('.upload-filename').remove();
+                    fileUploadDiv.find('.error').remove();
+                    fileUploadInput.wrap('<form>').closest('form').get(0).reset();
+                    fileUploadInput.unwrap();
+                });
+
+                fileUploadDiv.find('.file-append-button').click(function (e) {
+                    var form = $(this).parents('form');
+                    inputData = new FormData();
+                    inputData.append('file', $(fileUploadInput).prop('files')[0]);
+                    $.ajax({
+                        url: '/file/upload',
+                        type: 'POST',
+                        contentType: false,
+                        processData: false,
+                        data: inputData,
+                        dataType: 'json',
+                        success: function(data, textStatus, jqXHR) {
+                            if (jqXHR.status == '202') {
+                                fileUploadDiv.find('.id-file').val(data.id);
+                                fileUploadDiv.find('.file-append-button').hide().unbind('click');
+                                fileUploadDiv.find('.file-cancel-button').hide().unbind('click');
+                                fileUploadDiv.find('.file-delete-button').show();
+                                fileUploadDiv.find('.file-delete-button').click(function (e) {
+                                    fileUploadInput.show().attr("disabled", false);
+                                    fileUploadDiv.find('.upload-filename').remove();
+                                    fileUploadDiv.find('.error').remove();
+                                    fileUploadInput.wrap('<form>').closest('form').get(0).reset();
+                                    fileUploadInput.unwrap();
+                                    fileUploadDiv.find('.file-delete-button').hide().unbind('click');
+                                });
+
+                            } else {
+                                $("<p style = 'color:red'></p>").addClass('error')
+                                            .html('Ошибка при загрузке файла.')
+                                            .appendTo(fileUploadDiv);
+                            }
+                            return false;
+                        }
+
+                    });
+                });
+            });
+    });
+    </script>
+<div class="form-group wrap-element-row wrap-element-row-{$type}">
+    {$label}
+    <div class="col-sm-8">{$markup}<br/>
+    {$buttonAppend}{$buttonCancel}{$buttonDelete}{$idImage}
+    <br/>{$error}
+
+    </div>
+</div>
+HTML;
+} else {
+    echo <<<HTML
+<div class="form-group wrap-element-row wrap-element-row-{$type}">
+    {$label}
+    <div class="col-sm-8">{$markup}<br/>{$error}</div>
+</div>
+HTML;
+
+}
+

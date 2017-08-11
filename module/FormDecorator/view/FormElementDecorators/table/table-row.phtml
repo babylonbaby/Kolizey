@@ -1,0 +1,17 @@
+<?php
+$element = $this->get('formElement');
+IF($element instanceof \Zend\Form\FieldsetInterface) :
+?>
+    <tr>
+        <td colspan="2"><?php echo $this->formBranchRender($element, $this->get('branch'), $this->get('mode')); ?></td>
+    </tr>
+<?php
+ELSE:
+?>
+    <tr>
+        <td><?php echo $this->formLabel($element); ?></td>
+        <td><?php echo $this->formBranchRender($element, $this->get('branch'), $this->get('mode')); ?></td>
+    </tr>
+<?php
+ENDIF;
+?>

@@ -1,0 +1,35 @@
+<tr>
+    <td colspan="2" style="padding:2px;">
+        <fieldset>
+            <table class="tbl-collection" id="tbl-<?php echo $this->get('formElement')->getName(); ?>">
+            <?php
+            /** @var \Zend\Form\Fieldset $element */
+            $element = $this->get('formElement');
+            IF($element->getLabel()) :
+            ?>
+                <thead>
+                    <tr>
+                        <th colspan="2"><?php echo $this->formLabel($element); ?></th>
+                    </tr>
+                </thead>
+            <?php
+            ENDIF;
+            if($element->getOption('HideHeader') != true) {
+                echo $this->formElementView($element, $this->get('branch'), $this->get('mode'),
+                    '', ['template' => '/FormElementDecorators/table/head-collection']);
+            }
+            ?>
+            <tbody>
+            <?php
+                echo $this->get('content');
+            ?>
+            </tbody>
+            </table>
+            <?php
+               echo $this->formElementView($element, $this->get('branch'), $this->get('mode'),
+                   '', ['template' => '/FormElementDecorators/default/template']);
+            ?>
+        </fieldset>
+    </td>
+</tr>
+

@@ -1,0 +1,8 @@
+<?php
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+?>
+<tr>
+    <td class="element-label"><?php echo ($element->getLabel()) ? $this->formLabel($element) : ''; ?></td>
+    <td class="element-body" ><?php echo $this->formBranchRender($element, 'view', $this->get('mode')); ?></td>
+</tr>

@@ -1,0 +1,32 @@
+{
+    "name": "/grid",
+    "description": " grid module",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Kuleshov Danil",
+            "email": "kuleshov@f-technology.ru"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@git.f-technology.ru:/grid.git"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "zendframework/zendframework": ">=2.1.3",
+        "doctrine/dbal": ">=2.3.3",
+        "doctrine/doctrine-orm-module": ">=0.7",
+        "zendframework/zend-servicemanager": ">=2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Grid\\": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

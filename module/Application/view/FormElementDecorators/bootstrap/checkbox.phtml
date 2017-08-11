@@ -1,0 +1,27 @@
+<?php
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+
+$labelAttributes = $element->getLabelAttributes();
+$labelAttributes['class'] = 'control-label col-sm-4 ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
+$element->setLabelAttributes($labelAttributes);
+
+$classAtt = $element->getAttribute('class');
+$classAtt = 'checkbox ' . $classAtt;
+$element->setAttribute('class', $classAtt);
+
+$label = ($element->getLabel()) ? $this->formLabel($element) : '';
+$markup = $this->formCheckbox($element);
+$error = $this->formElementErrors($element);
+$type = $element->getAttribute('type');
+
+if ($this->get('mode') != 'view') {
+    echo <<<HTML
+<div class="form-group wrap-element-row wrap-element-row-{$type}">
+    {$label}
+    <div class="col-sm-8 wrap-element-body">{$markup}<br/>{$error}</div>
+</div>
+HTML;
+}
+
+

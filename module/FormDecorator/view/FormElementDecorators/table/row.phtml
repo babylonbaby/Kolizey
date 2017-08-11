@@ -1,0 +1,14 @@
+<?php
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = 'default';
+}
+?>
+<tr>
+    <td class="element-label"><?php echo ($element->getLabel()) ? $this->form_label($element) : ''; ?></td>
+    <td class="element-body" ><?php echo $this->formBranchRender($element, $branch, $this->get('mode')); ?></td>
+</tr>

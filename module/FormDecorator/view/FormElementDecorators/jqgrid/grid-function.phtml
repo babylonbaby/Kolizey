@@ -1,0 +1,24 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 29.01.17
+ * Time: 23:32
+ */
+use Zend\Json\Json;
+
+$content = $this->get('content');
+/** @var Zend\Form\Form $formElement */
+$formElement = $this->get('formElement');
+
+$gridName = 'Grid'.$formElement->getName();
+$gridBody = Json::encode($content, false, [ 'enableJsonExprFinder'=>true, 'prettyPrint'=>true ]);
+
+?>
+function(gridSelector, pagerSelector) {
+        var grid = $(gridSelector).jqGrid(<?php
+        echo $gridBody;
+        ?>);
+
+        return grid;
+    };

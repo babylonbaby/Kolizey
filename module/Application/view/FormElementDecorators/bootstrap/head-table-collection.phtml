@@ -1,0 +1,35 @@
+<?php
+/** @var \Zend\Form\Element\Collection $collection */
+$collection = $this->get('formElement');
+$target = $collection->getTargetElement();
+?>
+<thead>
+    <tr>
+        <?php
+        /** @var \Zend\Form\Element $element */
+        foreach($target as $element) {
+            $elClass = '';
+            $classes = '';
+            if (isset($element->getOptions()['class'])) {
+                $classes = $element->getOptions()['class'];
+                if(!empty($classes)) {
+                    if(is_array($classes)) {
+                        foreach ($classes as $class) {
+                            $elClass .= ' ' . $class;
+                        }
+                    } else {
+                        $elClass = $classes;
+                    }
+                }
+            }
+            if ($element instanceof \Zend\Form\Element\Hidden) {
+                continue;
+            }
+            ?>
+            <th class="collection-txt <?= $classes?>"><?php echo ($element->getLabel()) ? $this->form_label($element) : ''; ?></th>
+        <?php
+        }
+        ?>
+    </tr>
+</thead>
+

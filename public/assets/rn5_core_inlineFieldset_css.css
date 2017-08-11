@@ -1,0 +1,9 @@
+.wrap-element-row-inline-fieldset .wrap-element-body > label {
+    float: left;
+    padding-right: 2px;
+}
+
+.wrap-element-row-inline-fieldset .wrap-element-body > .element-wrapper {
+    float: left;
+    padding-right: 4px;
+}

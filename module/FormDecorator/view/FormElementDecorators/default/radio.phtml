@@ -1,0 +1,57 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 23.01.17
+ * Time: 22:53
+ */
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+/** @var \Zend\Form\Element\Radio $element */
+$element = $this->get('formElement');
+$id = $element->getAttribute('id');
+if (($currentMode = $element->getOption('mode')) == null) {
+    $currentMode = $mode;
+}
+$errorMsg = $errClass = '';
+if (isset($options['markupError'])) {
+    $errorMsg = $options['markupError'];
+    $element->setAttribute('class', $element->getAttribute('class') . ' input-error-element');
+}
+
+//echo '<div class="element-wrapper">';
+printf('<div class="element-wrapper element-wrapper-type-%s element-wrapper-id-%s">',
+    $element->getAttribute('type'), $id
+);
+if ($currentMode == 'view') {
+    $valueOptions = $element->getValueOptions();
+    $key = $element->getValue();
+    $value = null;
+    foreach ($valueOptions as $k => &$v) {
+        if (is_array($v)) {
+            //TODO есть такой расширенный формат опций
+        } else {
+            if ($k == $key) {
+                $value = $v;
+                break;
+            }
+        }
+    }
+    printf('<span id="info-%s" class="info-%s %s">%s</span>',
+        $id, $id,
+        $element->getAttribute('class'),
+        $value
+    );
+    echo $errorMsg;
+    echo $this->formHidden($element);
+} else {
+    echo $this->formRadio($element);
+    echo $errorMsg;
+}
+echo '</div>';
+

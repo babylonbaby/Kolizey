@@ -1,0 +1,15 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 22.01.17
+ * Time: 23:14
+ */
+use \Zend\Form\FieldsetInterface;
+
+$form = $this->get('formElement');
+echo $this->form()->openTag($form);
+$content = $this->get('content');
+echo $content;
+
+echo $this->form()->closeTag();

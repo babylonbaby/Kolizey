@@ -1,0 +1,20 @@
+<h1>Удаление пользователя</h1>
+<?php
+$this->headTitle('Удаление пользоаателя');
+
+?>
+<div class="row">
+    <p>Пользователь успешно удален.</p>
+</div>
+
+<div class="row">
+    <button name="buttons[close]">Закрыть</button>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('click', 'button[name="buttons[close]"]', function(){
+            window.location.href = '/user';
+        });
+    });
+</script>

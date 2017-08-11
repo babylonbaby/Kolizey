@@ -1,0 +1,21 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 29.01.17
+ * Time: 1:17
+ */
+use Zend\Json\Json;
+
+/** @var \Zend\Form\Form $form */
+$form = $this->get('formElement');
+$options = $form->getOption('jqGrid');
+if (($action = $form->getAttribute('action')) != null) {
+    $options['url'] = $action;
+}
+$options['pager'] = '#GridPager-'.$form->getName();
+
+$res = Json::encode($options, false, [ 'enableJsonExprFinder'=>true, 'prettyPrint'=>true ]);
+echo $res;
+
+

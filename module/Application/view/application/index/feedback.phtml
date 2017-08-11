@@ -1,0 +1,78 @@
+<main class="main">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="<?= $this->url('home') ?>">Главная</a> <span class="separator">—</span>
+            <span class="current">Отзывы</span>
+        </div>
+    </div>
+    <div class="container with_aside text-content">
+        <h1>Отзывы</h1>
+<!--        <h1>Отзывы --><?php //if (!empty($this->count)){echo '(' . $this->count . ')'; }?><!--</h1>-->
+
+        <p>
+            <a href="#feedback" class="btn btn-yl btn-wide btn-fluid fill popup_open" id="feedback_open">Оставить отзыв</a>
+        </p>
+        <ul class="feedback_list">
+            <?php
+            if (count($this->items)) :?>
+
+
+            <?php foreach ($this->items as $item) : ?>
+                <li>
+                    <?php if (!empty($item->getText())) : ?>
+                        <div class="text">
+                            <?= $item->getText(); ?>
+                        </div>
+                    <?php endif ?>
+                    <?php if (!empty($item->getName())) : ?>
+
+                        <span class="author">
+                        <?= $item->getName(); ?>
+                </span>
+                    <?php endif ?>
+                    <?php if (!empty($item->getAnswer())) : ?>
+
+                        <div class="reply">
+                            <div class="text">
+                                <?= $item->getAnswer(); ?>
+                            </div>
+                            <span class="author">Колизей</span>
+                        </div>
+                    <?php endif ?>
+                </li>
+            <?php endforeach ?>
+            <?php endif;
+            if (!count($this->items)) :?>
+                <li>
+                    <div class="text">
+                        К сожалению, пока никто не оставлял отзыв о нашей компании. Вы можете быть первым.
+                    </div>
+                </li>
+            <?php endif; ?>
+        </ul>
+        <div class="load_more_pane lefty">
+            <?php if ($this->page > 1) : ?>
+                <a href="<?= $this->serverUrl('/otzivy/page/') . ($this->page - 1); ?>" class="btn btn-wide btn-fluid btn-lblue">Предыдущие</a>
+            <?php endif;
+            if (!$this->lastPage) : ?>
+                <a href="<?= $this->serverUrl('/otzivy/page/') . ($this->page + 1); ?>" class="btn btn-wide btn-fluid btn-lblue">Показать еще</a>
+            <?php endif; ?>
+        </div>
+
+    </div>
+    <aside class="aside">
+        <div class="callback_fixer">
+            <h3>Объект вам покажет</h3>
+
+            <div class="info">
+                <img class="expert_avatar" src="<?= $this->basePath(); ?>/img/expert.jpg" alt="Молодоря Мария"/>
+                <span class="name">Молодоря<br/>Мария</span>
+                <a href="tel:+79670711818" class="tel">+7 967 071-18-18</a>
+            </div>
+            <div class="fixer_footer">
+                <a id="callback" href="#order" class="btn btn-yl btn-fluid fill">Заказать обратный звонок</a>
+            </div>
+        </div>
+    </aside>
+
+</main>

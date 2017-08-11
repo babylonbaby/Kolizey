@@ -1,0 +1,83 @@
+<script>
+    //FIXME вынести в assets в rn5Core
+    $.extend($.fn.fmatter , {
+        buttonWrapperFormatter: function(cellvalue, options, rowdata) {
+            //console.log(rowdata, options);
+            var me = this;
+            me.getItem = function(name, data) {
+                var type = data['type'] || 'span';
+                var ret='';
+                switch (type) {
+                    case 'button':
+                        ret = me.getItemButton(name, data, rowdata);
+                        break;
+                    case 'span':
+                    default:
+                        ret = '<'+type+' ';
+                        for (var key in data) {
+                            if (data.hasOwnProperty(key) == false) { continue; }
+                            ret += key + '="'+data[key]+'" ';
+                        }
+                        ret += 'data-id="'+rowdata['id']+'"';
+                        ret += '>';
+                        break;
+                }
+
+                return ret;
+            };
+            me.getItemButton = function(name, data, rowdata) {
+                var ret = '<button class="btn btn-xs btn-default"';
+                for (var key in data) {
+                    if (data.hasOwnProperty(key) == false) { continue; }
+                    if (data[key] == 'class') {continue;}
+                    ret += key + '="'+data[key]+'" ';
+                }
+                ret += 'data-id="'+rowdata['id']+'"';
+                ret += '><span ';
+                if (data['class'] != undefined) {
+                    ret += 'class="'+data['class']+'" ';
+                }
+                ret += '></span></button>';
+                return ret;
+            };
+
+            var ret = '';
+            for(var name in cellvalue) {
+                if (cellvalue.hasOwnProperty(name) == false) { continue; }
+                ret += me.getItem(name, cellvalue[name]);
+            }
+            return ret;
+        }
+    });
+    //    $.extend($.fn.fmatter.buttonWrapperFormatter , {
+    //        unformat : function(cellvalue, options) {
+    //            return cellvalue;
+    //        }
+    //    });
+
+    $.extend($.fn.fmatter , {
+        checkboxOnOffFormatter: function(cellvalue, options, rowdata) {
+            var me = this;
+            var ret = '<input data-toggle="toggle" type="checkbox" class="gridCheckboxOnOff"' +
+                ((cellvalue==1) ? 'checked="checked"' : '')+
+                ' data-id="' + rowdata['id'] +
+                '" >';
+            return ret;
+        }
+    });
+
+</script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Список ЖК
+    </div>
+    <div class="panel-body jqgrid-default">
+        <button class="btn btn-default btn-xs" id="add-complex">Добавить ЖК</button>
+        <?php
+
+        $gridForm = $this->form;
+        echo $this->formBranchRender($gridForm, 'jqGrid');
+        ?>
+    </div>
+</div>

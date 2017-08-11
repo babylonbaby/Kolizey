@@ -1,0 +1,38 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 22.01.17
+ * Time: 23:14
+ */
+use \Zend\Form\FieldsetInterface;
+use Rn5Core\Form\Element\ButtonWrapper;
+
+/** @var ButtonWrapper $buttonWrap */
+$buttonWrap = $this->get('formElement');
+
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+
+$buttonList = $buttonWrap->getButtons();
+
+$markup = '';
+/** @var \Zend\Form\Element $element */
+foreach ($buttonList as $element) {
+    $markup .= $this->formBranchRender($element, $branch, $mode)."\n";
+}
+
+if ($buttonWrap->getOption('wrap')) {
+    $att = '';
+    foreach($buttonWrap->getAttributes() as $k => $v) {
+        $att .= "$k='$v' ";
+    }
+    printf('<div %s>%s</div>', $att, $markup);
+} else {
+    echo $markup;
+}

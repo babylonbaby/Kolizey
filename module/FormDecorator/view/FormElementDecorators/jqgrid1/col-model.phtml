@@ -1,0 +1,22 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 29.01.17
+ * Time: 1:18
+ */
+use Zend\Json\Json;
+
+/** @var \Zend\Form\Form $form */
+$form = $this->get('formElement');
+$baseFieldset = $form->getBaseFieldset();
+$branch = $this->get('branch');
+$content = $this->get('content');
+
+$elList = [];
+/** @var \Zend\Form\Element $element */
+foreach($baseFieldset as $element) {
+    $elList[] = $this->formBranchRender($element, $branch, $this->get('mode'))."\n";
+}
+$res = Json::encode($elList, false, [ 'enableJsonExprFinder'=>true, 'prettyPrint'=>true ]);
+echo $res;

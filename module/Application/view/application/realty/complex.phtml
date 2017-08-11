@@ -1,0 +1,445 @@
+<?= $this->headScript()->appendFile('https://api-maps.yandex.ru/2.1/?lang=ru_RU', 'text/javascript')?>
+<div class="container breadcrumbs">
+    <a href="<?= $this->url('home') ?>">Главная</a><span class="separator">—</span>
+    <span class="current"><?= $this->complex->getName();?></span>
+</div>
+<main class="main">
+    <section class="bg-blue no-bg-image small-overlay">
+        <div class="container">
+            <h1 class="title fw low-margin"><?= $this->complex->getName();?></h1>
+            <div class="address-map-marker fnt_white"><?= $this->complex->getAddress();?></div>
+            <div class="tabs_header">
+                <a href="#description" class="active">Описание</a>
+                <a href="#flats">Квартиры в продаже</a>
+            </div>
+        </div>
+    </section>
+    <div class="tab active" id="description">
+        <div class="container with_aside narrow">
+            <div id="owl-desc" class="owl-slider desc_img">
+
+                <div class="slide">
+                    <img src="<?= $this->basePath();?>/img/<?= $this->image->getName();?>" alt="<?= $this->complex->getName();?>">
+                </div>
+
+            </div> <!-- END slider -->
+            <div class="about">
+                <h3><?= $this->complex->getName();?></h3>
+                <p>
+                    <?= $this->complex->getLongDescription();?>
+                </p>
+            </div>
+            <ul class="benefits">
+
+                <li>
+                    <img class="benefit_icon" alt="Подземный паркинг" src="<?= $this->basePath();?>/img/benefit_parking.png" />
+                    Подземный<br />паркинг
+                </li>
+                <li>
+                    <img class="benefit_icon" alt="15 минут от метро" src="<?= $this->basePath();?>/img/benefit_metro.png" />
+                    15 минут<br />от метро
+                </li>
+                <li>
+                    <img class="benefit_icon" alt="Рядом парк" src="<?= $this->basePath();?>/img/benefit_park.png" />
+                    Рядом<br /> парк
+                </li>
+                <li>
+                    <img class="benefit_icon" alt="Развитая инфраструктура" src="<?= $this->basePath();?>/img/benefit_infrastructure.png" />
+                    Развитая<br />
+                    инфраструктура
+                </li>
+
+            </ul>
+            <div id="yandex_map" class="map"></div>
+            <table class="pricing">
+                <thead>
+                <tr>
+                    <th></th>
+
+                    <th>1 комната</th>
+                    <th>2 комнаты</th>
+                    <th>3 комнаты</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <?php
+                //TODO Ввести название корпуса
+                $number = 1;
+                foreach($this->complex->getHousing() as $housing) : ?>
+                <tr>
+                    <td>Корпус <?= $number;?></td>
+                    <td><?php if($housing->getOneRoomCost()) :?>
+
+                        от <?= $housing->getOneRoomCost() ?> руб.
+                        <?php endif;?>
+                    </td>
+                    <td><?php if($housing->getTwoRoomCost()) :?>
+
+                        от <?= $housing->getTwoRoomCost() ?> руб.
+                        <?php endif;?>
+                    </td>
+                    <td><?php if($housing->getThreeRoomCost()) :?>
+
+                        от <?= $housing->getThreeRoomCost() ?> руб.
+                        <?php endif;?>
+                    </td>
+                </tr>
+
+                    <?php $number++; ?>
+
+                <?php endforeach?>
+
+                </tbody>
+            </table>
+        </div> <!-- END .container.with_aside.narrow -->
+    </div> <!-- END .tab#description -->
+    <div class="tab bg-overlay-gray" id="flats">
+        <div class="container filters blue with_aside">
+            <div class="radio_group">
+                <span class="label">Отсортировать:</span>
+                <span class="option">по цене</span>
+                <span class="option">по площади м<sup>2</sup></span>
+            </div>
+            <div class="radio_group thick">
+                <span class="label">Комнаты: </span>
+                <span class="flat_icon active">1</span>
+                <span class="flat_icon active">2</span>
+                <span class="flat_icon">3</span>
+                <span class="flat_icon">4</span>
+                <span class="flat_icon">4+</span>
+            </div>
+        </div> <!-- END .filters.blue -->
+
+
+        <div class="container with_aside bg-overlay-white">
+            <div class="plan">
+                <ul class="flat_layout">
+
+                <?php
+                    $level = $this->housing->getLevels();
+                    for($i = 1; $i <= $this->housing->getLevels(); $i++) :
+                ?>
+
+
+                    <li>
+                        <span class="n"><?= $level?></span>
+
+                        <?php
+                            $apartments = [];
+                            foreach ($this->complex->getObjects() as $item) {
+                                if ($item->getSection()->getHousing()->getId() == $this->housing->getId()) {
+                                    if ($item->getLevel() == $level) {
+                                        $apartments[] = $item;
+                                    }
+                                }
+                            }
+
+                        //TODO Дописать рендер пустых спанов
+//                            for($i = $this->)
+
+                        ?>
+
+                        <span class="flat disabled"></span>
+
+                        <span class="flat disabled"></span>
+
+                        <span class="flat disabled"></span>
+
+                        <span class="flat disabled"></span>
+
+
+                        <span class="flat occupied">
+              <div class="flat_info">
+                <h3>Квартира №68</h3>
+                <div class="desc">
+                  <div class="area-marker">58 м2</div>
+                  <div class="note-marker">Двухкомнатная</div>
+                </div>
+                <div class="offer">
+                  <div class="price">70 000 руб./м<sup>2</sup></div>
+                  <div class="t_price">67 00000 руб.</div>
+                </div>
+              </div>
+          </span>
+
+
+                        <span class="flat disabled"></span>
+
+                        <span class="flat disabled"></span>
+
+                        <span class="flat disabled"></span>
+
+                        <span class="flat disabled"></span>
+
+
+                        <?php $level--; ?>
+                        <?php endfor; ?>
+                    </li>
+
+
+
+                </ul>
+                <aside class="flat_control">
+                    <ul class="form-list">
+                        <li>
+                            <label for="housin">Корпус</label>
+                            <select class="shorter" id="housing">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="section">Секция</label>
+                            <select class="shorter" id="section">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="flor">Этаж</label>
+                            <select class="shorter" id="floor">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </li>
+                    </ul>
+                    <img class="img" src="<?= $this->basePath();?>/img/plan.png" alt="plan" />
+                </aside>
+            </div>
+        </div>
+        <div class="container with_aside">
+            <table class="flats_table">
+                <thead>
+                <tr>
+                    <th>Корпус</th>
+                    <th>Секция</th>
+                    <th>Этаж</th>
+                    <th>Комнат</th>
+                    <th>Площадь</th>
+                    <th class="price">Стоимость</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr class="active">
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+                <tr class="info">
+                    <td colspan="6">
+                        <img src="<?= $this->basePath();?>/img/plan.png" alt="Квартира №68">
+                        <span class="details">
+                <span class="flat_n">Квартира №68</span>
+                <span class="desc">
+                  Отделка: черновая
+                </span>
+                <a href="#" class="btn btn-yl btn-fluid fill">Отправить заявку</a>
+              </span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                <tr>
+                    <td class="housing">1</td>
+                    <td class="section">1</td>
+                    <td class="floor">12</td>
+                    <td class="rooms">Двухкомнатая</td>
+                    <td class="area">58м<sup>2</sup></td>
+                    <td class="price ">67 00000 руб.</td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div> <!-- END .container.with_aside таблица с квартирами -->
+    </div> <!-- END .tab#flats -->
+    <aside class="aside">
+        <div class="callback_fixer">
+            <h3>Объект вам покажет</h3>
+            <div class="info">
+                <img class="expert_avatar" src="<?= $this->basePath();?>/img/expert.jpg" alt="Молодоря Мария" />
+                <span class="name">Молодоря<br />Мария</span>
+                <a href="tel:+79670711818" class="tel">+7 967 071-18-18</a>
+            </div>
+            <div class="fixer_footer">
+                <a href="#order" id="callback" class="btn btn-yl btn-fluid fill">Заказать обратный звонок</a>
+            </div>
+        </div>
+    </aside>
+
+</main>
+<section class="bg-lblue">
+    <div class="container">
+        <h1 class="title-section">Похожие объекты</h1>
+        <div id="owl-1" class="owl-slider">
+            <?php $i = 0; foreach ($this->other as $complex) :?>
+                <?php if ($i%3 == 0) :?>
+                    <div class="slide">
+                <?php endif ?>
+                <div class="col-12-4"><a href="/nedvizhimost/complex/<?= $complex->getId() ?>" class="td-n">
+                        <div class="block">
+                            <?php
+                            $apartments = $complex->getObjects();
+                            /** @var RealtyObject $object */
+                            $object = $apartments[0];
+                            $images = $object->getImages();
+                            $image = $images[0];
+                            if(!empty($image)) :?>
+                                <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/<?= $image->getName();?>" alt="<?= $complex->getName();?>"></div>
+                            <?php  else :?>
+                                <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="<?= $complex->getName();?>"></div>
+                            <?php endif;?>
+
+                            <div class="adress"><?= $complex->getAddress(); ?></div>
+
+                            <div class="notice"><?= mb_substr($complex->getLongDescription(), 0, 80) ?> ...</div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+                <?php if (($i+1)%3 == 0 && $i != 0) :?>
+                    </div>
+                <?php endif ?>
+                <?php $i++?>
+            <?php endforeach;?>
+        </div>
+
+    </div>
+</section>
+<?php
+
+$point = $this->complex->getLocation();
+$point = explode(',', $point);
+
+echo <<<SCRIPT
+<script>
+    var pointA = {$point[0]};
+    var pointB = {$point[1]};
+    var name = '{$this->complex->getName()}';
+    var address = '{$this->complex->getAddress()}';
+
+    ymaps.ready(init);
+    var myMap;
+    var myPlacemark;
+    function init(){
+        myMap = new ymaps.Map('yandex_map', {
+            center: [pointA ,pointB],
+            zoom: 16,
+            controls: ['zoomControl']
+        });
+
+        myPlacemark = new ymaps.Placemark([pointA ,pointB], { hintContent: name, balloonContent: address });
+
+        myMap.geoObjects.add(myPlacemark);
+    }
+</script>
+SCRIPT
+    ?>

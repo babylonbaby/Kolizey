@@ -1,0 +1,35 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 13.02.17
+ * Time: 23:38
+ */
+use \Zend\Form\FieldsetInterface;
+
+/** @var \Zend\Form\Fieldset $element */
+$element = $this->get('formElement');
+$content = $this->get('content');
+$label = $element->getLabel();
+$errorMessage = $element->getAttribute('error-message');
+$type = $element->getAttribute('type');
+$isBaseFS = $element->useAsBaseFieldset();
+$classStr = '';
+if ($isBaseFS == false) {
+    $classStr .= 'panel panel-default ';
+}
+$classStr .= 'wrap-element-fieldset'. $type;
+?>
+<fieldset>
+    <div class="<?php echo $classStr; ?>">
+        <?php
+        if ($isBaseFS==false && $label) {
+            echo "<div class='panel-heading'>" . $this->formLabel($element) . "</div>";
+        }
+        ?>
+        <?php if($errorMessage): ?>
+        <div class="text-danger form-panel-error"><?php echo $errorMessage; ?></div>
+        <?php endif; ?>
+        <?php echo $content; ?>
+    </div>
+</fieldset>

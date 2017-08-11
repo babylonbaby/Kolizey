@@ -1,0 +1,305 @@
+<?= $this->doctype() ?>
+
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <?= $this->headTitle('Колизей - агенство недвижимости')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <!-- Le styles -->
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.png'])
+                ->prependStylesheet($this->basePath('css/style.css'))
+            ->prependStylesheet($this->basePath('css/magnific-popup.css'))
+            ->prependStylesheet($this->basePath('css/form.css'))
+//            ->prependStylesheet($this->basePath('css/old.style.css'))
+        ?>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/ui/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/ui/ui.jqgrid.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/ui/ui.jqgrid-bootstrap-ui.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/ui/ui.jqgrid-bootstrap.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap-toggle.min.css" />
+
+        <link href="/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
+        <link href="/css/bootstrap-tokenfield.css" rel="stylesheet" type="text/css" />
+        <link href="/css/tokenfield-typeahead.css" rel="stylesheet" type="text/css" />
+
+        <!--[if le IE 9 ]>
+        <script src="js/html5shiv.min.js"></script>
+        <link rel="stylesheet" media="all" type="text/css" href="/css/ie_styles.css">
+        <![endif]-->
+
+        <!-- Scripts -->
+        <?= $this->headScript()
+            ->prependFile($this->basePath('js/jquery.magnific-popup.js'))
+                ->prependFile($this->basePath('js/owl.carousel-min.js'))
+                ->prependFile($this->basePath('js/script-style.js'))
+            ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
+        ?>
+
+        <script src="/js/ui/jquery-ui.js" type="text/javascript"></script>
+        <script src="/js/grid/grid.locale-ru.js" type="text/javascript"></script>
+        <script src="/js/grid/jquery.jqGrid.min.js" type="text/javascript"></script>
+        <script src="/js/bootstrap-toggle.min.js" type="text/javascript"></script>
+        <script src='/js/jquery.datetimepicker.js' type='text/javascript'></script>
+        <script src='/js/qrcode.js' type='text/javascript'></script>
+        <script src='/js/bootstrap-tokenfield.js' type='text/javascript'></script>
+
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+    </head>
+    <body>
+    <div class="btn-up hidden"></div>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-full">
+                    <a href="<?= $this->url('home') ?>"><div class="logo"></div></a>
+                    <div class="search"></div>
+                    <div class="input-search">
+                        <input placeholder="Поиск по сайту">
+                    </div>
+                    <div class="contact"><span class="mail"><a href="mailto:info@kolizeyrealty.ru">info@kolizeyrealty.ru</a></span>
+                        <div class="phone"><span class="plus">+</span><span class="code">7 (495)&nbsp;</span><span class="tel">247-83-07</span><a href="home" class="call-me">Заказать звонок</a></div>
+                    </div>
+                    <div class="menu">
+                        <ul>
+                            <li class="li-menu drop">
+                                <a href="<?= $this->url('home') ?>">купить</a>
+                                <div class="p-menu">
+                                    <div class="col-12-3">
+                                        <ul>
+                                            <li class="goLink"><a href="<?= $this->serverUrl('/nedvizhimost/city') ?>">Городская недвижимость</a></li>
+                                            <li class="goLink"><a href="<?= $this->serverUrl('/nedvizhimost/new') ?>">Новостройки</a></li>
+                                            <li class="goLink"><a href="<?= $this->serverUrl('/nedvizhimost/after-market') ?>">Вторичный рынок</a></li>
+                                            <li class="goLink"><a href="<?= $this->serverUrl('/nedvizhimost/renta') ?>">Аренда квартир, комнат</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12-3">
+                                        <ul>
+                                            <li class="goLink"><a href="<?= $this->serverUrl('/nedvizhimost/country') ?>">Загородная недвижимость</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12-3">
+                                        <ul>
+                                            <li class="goLink"><a href="<?= $this->serverUrl('/nedvizhimost/commerce') ?>">Коммерческая недвижимость</a></li>
+                                            <li class="goLink"><a href="<?= $this->serverUrl('/nedvizhimost/commerce-renta') ?>">Аренда</a></li>
+                                            <li class="goLink"><a href="<?= $this->serverUrl('/nedvizhimost/commerce-sale') ?>">Продажа</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12-3">
+                                        <ul>
+                                            <li class="goLink"><a href="<?= $this->serverUrl('/nedvizhimost/foreign') ?>">Зарубежная недвижимость</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="li-menu"><a href="<?= $this->serverUrl('/ipoteka') ?>">Ипотека</a></li>
+<!--                            <li class="li-menu drop">Арендовать-->
+<!--                                <div class="p-menu">-->
+<!--                                    <div class="col-12-3">-->
+<!--                                        <ul>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Городская недвижимость</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Новостройки</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Вторичный рынок</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Новостройки</a></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-12-3">-->
+<!--                                        <ul>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Городская недвижимость</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Новостройки</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Вторичный рынок</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Новостройки</a></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-12-3">-->
+<!--                                        <ul>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Городская недвижимость</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Новостройки</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Вторичный рынок</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Новостройки</a></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-12-3">-->
+<!--                                        <ul>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Городская недвижимость</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Новостройки</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Вторичный рынок</a></li>-->
+<!--                                            <li><a href="--><?//= $this->url('home') ?><!--">Новостройки</a></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+                            <li class="li-menu"><a href="<?= $this->serverUrl('/uslugi') ?>">Другие услуги</a></li>
+                            <li class="li-menu"><a href="<?= $this->serverUrl('/otzivy') ?>">Отзывы</a></li>
+                            <li class="li-menu"><a href="<?= $this->serverUrl('/about') ?>">О компании</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <?= $this->content ?>
+
+    <!-- footers -->
+    <div class="duble-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-10-5 pad1">
+                    <p class="s32 white">Подобрать предложения с наибольшей выгодой от застройщиков и собственников помещений</p>
+<!--                    <div>-->
+<!--                        <a id="order_open" href="#order" class="btn btn-yl btn-wide btn-fluid fill popup_open">Оставить заявку</a>-->
+<!--                    </div>-->
+                    <div id="order_open" class="btn btn-call" data-target="#order">
+                        Оставить заявку
+                    </div>
+                </div>
+                <div class="col-10-5 pad2">
+                    <p class="s34 white">Продажа недвижимости &mdash; <br> наша профессия, наш конек.</p>
+                    <p class="s24 white">За 19 лет работы мы научились легко ориентироваться во всех ньюансах.</p>
+                </div>
+            </div>
+        </div>
+    </div> <!-- END div.duble-bg -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12-3">
+                    <a href="<?= $this->serverUrl('/nedvizhimost/city') ?>">Городская недвижимость</a>
+                    <a href="<?= $this->serverUrl('/nedvizhimost/country') ?>">Загородная недвижимость</a>
+                    <a href="<?= $this->serverUrl('/nedvizhimost/commerce') ?>">Коммерческая недвижимость</a>
+                </div>
+                <div class="col-12-3">
+                    <a href="<?= $this->serverUrl('/nedvizhimost/new') ?>">Квартиры в новостройках</a>
+                    <a href="<?= $this->serverUrl('/nedvizhimost/commerce') ?>">Нежилые помещения</a>
+                    <a href="<?= $this->serverUrl('/nedvizhimost/renta') ?>">Снять квартиру или комнату</a>
+                </div>
+                <div class="col-12-3">
+                    <a href="<?= $this->serverUrl('/uslugi') ?>">Оценка недвижимости</a>
+                    <a href="<?= $this->serverUrl('/uslugi') ?>">Согласование перепланировок</a>
+                    <a href="<?= $this->serverUrl('/uslugi') ?>">Срочный выкуп квартир</a>
+                </div>
+                <div class="col-12-3">
+                    <a href="<?= $this->serverUrl('/ipoteka') ?>">Ипотека</a>
+                    <a href="<?= $this->serverUrl('/uslugi') ?>">Обмен квартир</a>
+                    <a href="<?= $this->serverUrl('/uslugi') ?>">Перевод помещения в жилой фонд</a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- END div.footer -->
+    <footer>
+        <div class="container">
+            <div class="copy">&copy; <?= date('Y') ?> «Колизей» Агентство недвижимости</div>
+            <div class="adress">Московская обл, Реутов, <br> ул. Ленина, 1А, 408</div>
+            <div class="contact">
+                <div class="phone">+7 (495) 247-83-07</div>
+                <div class="mail">info@kolizeyrealty.ru</div>
+            </div>
+            <div class="soc-sety">
+                <a href="<?= $this->url('home') ?>"><div class="vk"></div></a>
+                <a href="<?= $this->url('home') ?>"><div class="fb"></div></a>
+                <a href="<?= $this->url('home') ?>"><div class="inst"></div></a>
+            </div>
+        </div>
+    </footer>
+    <div id="curtain"></div>
+    <div id="feedback" class="popup">
+        <a class="popup_close close_btn">&times;</a>
+        <h3>Оставить отзыв</h3>
+        <form name="form_feedback">
+            <div class="rowy">
+<!--                <div class="half">-->
+                    <ul class="form-list">
+                        <li><input id="feedback_name" type="text" required="required" placeholder="Имя" /></li>
+                        <li><input id="feedback_email" type="email" required="required" placeholder="Email" /></li>
+                        <li>
+                            <select id="feedback_select">
+                                <option value="">Выбрать город</option>
+                                <option value="Москва">Москва</option>
+                                <option value="Санкт-Петербург">Санкт-Петербург</option>
+                                <option value="Новосибирск">Новосибирск</option>
+                                <option value="Екатеринбург">Екатеринбург</option>
+                                <option value="Нижний Новгород">Нижний Новгород</option>
+                            </select>
+                        </li>
+                    </ul>
+<!--                </div>-->
+<!--                <div class="half text-center">-->
+<!--                    <p class="sn_logon">Войти с помощью:</p>-->
+<!--                    <div class="hor_box">-->
+<!--                        <a href="#" class="sn_logo fb">FB</a>-->
+<!--                        <a href="#" class="sn_logo vk">FB</a>-->
+<!--                        <a href="#" class="sn_logo twitter">Twitter</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+            <label for="feedback_message" class="blue_label">Сообщение</label>
+            <textarea id="feedback_message"></textarea>
+            <input type="submit" id="feedback_send" class="btn btn-yl fill" value="Отправить">
+        </form>
+    </div>
+    <div id="order" class="popup">
+        <a class="popup_close close_btn">&times;</a>
+        <h3>Оставить заявку</h3>
+        <form name="form_order">
+            <div class="rowy">
+<!--                <div class="half">-->
+                    <ul class="form-list">
+                        <li><input id="order_name" type="text" required="required" placeholder="Имя" /></li>
+                        <li><input id="order_phone" type="text" required="required" placeholder="Номер телефона" /></li>
+                        <li><input id="order_email" type="email" required="required" placeholder="Email" /></li>
+                        <li>
+                            <select id="order_select">
+                                <option value="">Вид объекта</option>
+                                <option value="Гаражи">Гаражи</option>
+                                <option value="Дачи">Дачи</option>
+                                <option value="Доли">Доли</option>
+                                <option value="Дома">Дома</option>
+                                <option value="Квартиры">Квартиры</option>
+                                <option value="Квартиры за рубежом">Квартиры за рубежом</option>
+                                <option value="Комнаты">Комнаты</option>
+                                <option value="Коттеджи">Коттеджи</option>
+                                <option value="Офисы">Офисы</option>
+                                <option value="Своб. назначения">Своб. назначения</option>
+                                <option value="Склады">Склады</option>
+                                <option value="Студии">Студии</option>
+                                <option value="Таунхаусы">Таунхаусы</option>
+                                <option value="Торг. площади">Торг. площади</option>
+                                <option value="Торг. центры">Торг. центры</option>
+                                <option value="Участки">Участки</option>
+                                <option value="Части дома">Части дома</option>
+                            </select>
+                        </li>
+                    </ul>
+<!--                </div>-->
+<!--                <div class="half text-center">-->
+<!--                    <p class="sn_logon">Войти с помощью:</p>-->
+<!--                    <div class="hor_box">-->
+<!--                        <a href="#" class="sn_logo fb">FB</a>-->
+<!--                        <a href="#" class="sn_logo vk">FB</a>-->
+<!--                        <a href="#" class="sn_logo twitter">Twitter</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+            <label for="order_message" class="blue_label">Комментарий</label>
+            <textarea id="order_message"></textarea>
+            <input type="submit" id="order_send" class="btn btn-yl fill" value="Отправить">
+        </form>
+    </div>
+    <div id="feedback_success" class="popup">
+        <a class="popup_close close_btn">&times;</a>
+        <h3>Спасибо!</h3>
+        <p>
+            Ваше сообщение<br />удачно отправлено.
+        </p>
+        <div class="popup_footer">
+            <button type="button" class="btn btn-yl fill popup_close">Ок</button>
+        </div>
+    </div>
+
+<!--            --><?//= $this->inlineScript() ?>
+    </body>
+</html>

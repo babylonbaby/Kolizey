@@ -1,0 +1,22 @@
+<div class="collection-buttons">
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 04.04.17
+ * Time: 13:54
+ */
+$buttonSpec = $this->collectionButtonsSpec($this->element, $this->mode);
+
+foreach($buttonSpec as $key => $spec) {
+    $attributes = '';
+    if (array_key_exists('attributes', $spec)) {
+        foreach($spec['attributes'] as $k => $v) {
+            $attributes .= "$k='$v' ";
+        }
+    }
+    $label = (isset($spec['label'])) ? $spec['label'] : $k;
+    echo "<button $attributes>". $label . "</button>";
+}
+?>
+</div>

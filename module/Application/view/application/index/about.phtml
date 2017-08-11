@@ -1,0 +1,73 @@
+<?= $this->headScript()->appendFile('https://api-maps.yandex.ru/2.1/?lang=ru_RU', 'text/javascript')?>
+<main class="main">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="<?= $this->url('home') ?>">Главная</a> <span class="separator">—</span>
+            <span class="current">О компании</span>
+        </div>
+    </div>
+    <div class="container with_aside text-content narrow">
+        <h1>О компании</h1>
+        <p class="summary">
+            Агентство недвижимости «Колизей» - ведущая риэлторская компания в городе Реутов. Деятельность компании
+            сосредоточена на оказании риэлторских услуг в столичном регионе и в ближайшем Подмосковье, в городе Реутов, а
+            именно:
+        </p>
+        <h3>Гарантией работы агентства является</h3>
+        <p>
+            Аренда и продажа квартир и комнат в Новостройках и на вторичном рынке, а так же продажа коттеджей, таунхаусов и
+            загородных участков в Московской области.
+        </p>
+        <div class="rowy" style="margin-bottom:100px;">
+            <div class="half vcard">
+                <h3>Контакты</h3>
+                <p>
+                    <span class="tel">+7 (495) 247-83-07</span>    <span class="email">info@kolizey.ru</span><br />
+                    <span class="adr ">
+            <span class="fn org" style="display:none">Агентство недвижимости «Колизей»</span>
+            <span class="region">Московская обл</span>,
+            <span class="locality">Реутов</span>,
+            <span class="street-address">ул. Ленина, 1, 408</span>
+          </span>
+                </p>
+                <h3>Напишите директору</h3>
+                <p>
+                    Евгений Прохоров  <a href="mailto:info@kolizey.ru">info@kolizey.ru</a>
+                </p>
+            </div>
+            <div class="half">
+                <div id="yandex_map" class="map"></div>
+            </div>
+        </div>
+    </div>
+    <aside class="aside">
+        <div class="callback_fixer">
+            <h3>Объект вам покажет</h3>
+            <div class="info">
+                <img class="expert_avatar" src="<?= $this->basePath();?>/img/expert.jpg" alt="Молодоря Мария" />
+                <span class="name">Молодоря<br />Мария</span>
+                <a href="tel:+79670711818" class="tel">+7 967 071-18-18</a>
+            </div>
+            <div class="fixer_footer">
+                <a id="callback" href="#order" class="btn btn-yl btn-fluid fill">Заказать обратный звонок</a>
+            </div>
+        </div>
+    </aside>
+
+</main>
+<?= $this->inlineScript()->appendScript('
+    ymaps.ready(init);
+    var myMap;
+    var myPlacemark;
+    function init(){
+        myMap = new ymaps.Map("yandex_map", {
+            center: [55.75332106897045,37.85777299999999],
+            zoom: 16,
+            controls: ["zoomControl"]
+        });
+
+        myPlacemark = new ymaps.Placemark([55.75332106897045,37.85777299999999], { hintContent: \'Агенство недвижимости "Колизей"\', balloonContent: \'Реутов, ул. Ленина, д. 1, оф.408\' });
+
+        myMap.geoObjects.add(myPlacemark);
+    }
+  '); ?>

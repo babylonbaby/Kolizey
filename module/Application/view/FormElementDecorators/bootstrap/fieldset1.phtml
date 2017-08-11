@@ -1,0 +1,31 @@
+<?php
+use \Zend\Form\FieldsetInterface;
+
+/** @var \Zend\Form\Fieldset $element */
+$element = $this->get('formElement');
+$content = $this->get('content');
+$label = $element->getLabel();
+$errorMessage = $element->getAttribute('error-message');
+$type = $element->getAttribute('type');
+$isBaseFS = $element->useAsBaseFieldset();
+$classStr = '';
+$classFild = '';
+if ($isBaseFS == false) {
+    $classStr .= 'panel panel-default ';
+    $classFild = 'col-sm-12';
+}
+$classStr .= 'wrap-element-fieldset'. $type;
+?>
+<fieldset class="<?= $classFild; ?>">
+    <div class="<?php echo $classStr; ?>">
+        <?php
+        if ($isBaseFS==false && $label) {
+            echo "<div class='panel-heading'>" . $this->formLabel($element) . "</div>";
+        }
+        ?>
+        <?php if($errorMessage): ?>
+        <div class="text-danger form-panel-error"><?php echo $errorMessage; ?></div>
+        <?php endif; ?>
+        <?php echo $content; ?>
+    </div>
+</fieldset>

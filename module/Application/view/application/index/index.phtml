@@ -1,0 +1,247 @@
+<section class="header">
+    <div class="container">
+        <div id="owl-head" class="owl-slider">
+            <div class="slide"><img src="<?= $this->basePath();?>/img/city.png" alt="слайд-1">
+                <h1 class="title">Оказываем помощь в получении ипотеки</h1>
+                <div class="btn btn-lblue">Подробнее</div>
+            </div>
+            <div class="slide"><img src="<?= $this->basePath();?>/img/com.png" alt="слайд-2">
+                <h1 class="title">Оказываем помощь в получении ипотеки</h1>
+                <div class="btn btn-lblue">Подробнее</div>
+            </div>
+            <div class="slide"><img src="<?= $this->basePath();?>/img/home1.jpg" alt="слайд-3">
+                <h1 class="title">Оказываем помощь в получении ипотеки</h1>
+                <div class="btn btn-lblue">Подробнее</div>
+            </div>
+            <div class="slide"><img src="<?= $this->basePath();?>/img/1200.jpg" alt="слайд-4">
+                <h1 class="title">Оказываем помощь в получении ипотеки</h1>
+                <div class="btn btn-lblue">Подробнее</div>
+            </div>
+            <div class="slide"><img src="<?= $this->basePath();?>/img/6a.png" alt="слайд-5">
+                <h1 class="title">Оказываем помощь в получении ипотеки</h1>
+                <div class="btn btn-lblue">Подробнее</div>
+            </div>
+            <div class="slide"><img src="<?= $this->basePath();?>/img/home1.jpg" alt="слайд-6">
+                <h1 class="title">Оказываем помощь в получении ипотеки</h1>
+                <div class="btn btn-lblue">Подробнее</div>
+            </div>
+            <div class="slide"><img src="<?= $this->basePath();?>/img/1200.jpg" alt="слайд-7">
+                <h1 class="title">Оказываем помощь в получении ипотеки</h1>
+                <div class="btn btn-lblue">Подробнее</div>
+            </div>
+            <div class="slide"><img src="<?= $this->basePath();?>/img/6a.png" alt="слайд-8">
+                <h1 class="title">Оказываем помощь в получении ипотеки</h1>
+                <div class="btn btn-lblue">Подробнее</div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="desc">
+    <div class="container">
+        <div class="row">
+            <div class="col-10-5">
+                <p class="opis">
+                    Опытные специалисты компании «Колизей» помогут
+                    в осуществлении любых операций, связанных
+                    с покупкой, продажей, арендой любой недвижимости —
+                    в новостройках города, за городом и за рубежом.
+                </p>
+            </div>
+            <div class="col-10-5">
+                <div class="el-sk">
+                    <div class="col-12-7">
+                        <p>Проконсультируйтесь бесплатно по телефону:</p><a href="home">+7 (495) 247-83-07</a>
+                    </div>
+                    <div class="col-12-5 no-p">
+                        <p>или напишите нам</p><a href="home">info@kolizeyrealty.ru</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- END div.desc -->
+<div class="etaps">
+    <div class="container">
+        <div class="row">
+            <div class="col-10-2 text-center"><a href="<?= $this->serverUrl('/nedvizhimost/new') ?>"><img src="<?= $this->basePath();?>/img/icon-1.png" alt="этап-1"></a>
+                <p class="text-center">новостройки <br> реутова</p>
+            </div>
+            <div class="col-10-2 text-center"><a href="<?= $this->serverUrl('/nedvizhimost/after-market') ?>"><img src="<?= $this->basePath();?>/img/icon-2.png" alt="этап-2"></a>
+                <p class="text-center">квартиры <br> и комнаты</p>
+            </div>
+            <div class="col-10-2 text-center"><a href="<?= $this->serverUrl('/nedvizhimost/commerce') ?>"><img src="<?= $this->basePath();?>/img/icon-3.png" alt="этап-3"></a>
+                <p class="text-center">коммерческая <br> недвижимость</p>
+            </div>
+            <div class="col-10-2 text-center"><a href="<?= $this->serverUrl('/nedvizhimost/country') ?>"><img src="<?= $this->basePath();?>/img/icon-4.png" alt="этап-4"></a>
+                <p class="text-center">загородные дома <br> и участки</p>
+            </div>
+            <div class="col-10-2 text-center"><a href="<?= $this->serverUrl('/nedvizhimost/foreign') ?>"><img src="<?= $this->basePath();?>/img/icon-5.png" alt="этап-5"></a>
+                <p class="text-center">недвижимость <br> за рубежом</p>
+            </div>
+        </div>
+    </div>
+</div> <!-- END div.etaps -->
+<section class="bg-lblue">
+    <div class="container">
+        <h1 class="title-section">Специальные предложения</h1><a href="<?= $this->serverUrl('/nedvizhimost/city/sort/profit/1') ?>" class="link white">Смотреть все</a>
+        <div id="owl-1" class="owl-slider">
+        <?php $i = 0; foreach ($this->special as $item) :?>
+            <?php if ($i%3 == 0) :?>
+            <div class="slide">
+            <?php endif ?>
+                <div class="col-12-4"><a href="/nedvizhimost/apartment/<?= $item->getId() ?>" class="td-n">
+                        <div class="block <?= $item->hasCategory($this->category) ? 'best' : '' ;?>">
+                            <?php if(count($item->getImages()) > 0) :?>
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/<?= $item->getImages()[0]->getName();?>" alt="<?= $item->getName();?>"></div>
+                            <?php  else :?>
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="<?= $item->getName();?>"></div>
+                            <?php endif;?>
+
+                            <div class="adress"><?= $item->getName(); ?></div>
+
+                            <div class="notice"><?= mb_substr($item->getDescription(), 0, 80) ?> ...</div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+            <?php if (($i+1)%3 == 0 && $i != 0) :?>
+            </div>
+            <?php endif ?>
+            <?php $i++?>
+        <?php endforeach;?>
+        </div>
+    </div>
+</section>
+<section class="bg-blue">
+    <div class="container">
+        <h1 class="title-section">Квартиры <br> в новостройках</h1><a href="<?= $this->url('home') ?>" class="link white">Смотреть все</a>
+        <div id="owl-2" class="owl-slider">
+            <div class="slide">
+                <div class="col-12-4"><a href="<?= $this->url('home') ?>" class="td-n">
+                        <div class="block best">
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="Реутов, ул. Комсомольская, д. 2"></div>
+                            <!--                                <div class="adress">Реутов,<br> ул. Комсомольская, д. 2</div>-->
+                            <div class="adress-map-marker">Реутов,<br> ул. Комсомольская, д. 2</div>
+                            <div class="area">52-136 м<sup>2</sup></div>
+                            <div class="cost">70 000 руб./м<sup>2</sup></div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+                <div class="col-12-4"><a href="<?= $this->url('home') ?>" class="td-n">
+                        <div class="block">
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="Реутов, ул. Комсомольская, д. 2"></div>
+                            <!--                                <div class="adress">Реутов,<br> ул. Комсомольская, д. 2</div>-->
+                            <div class="adress-map-marker">Реутов,<br> ул. Комсомольская, д. 2</div>
+                            <div class="area">52-136 м<sup>2</sup></div>
+                            <div class="cost">70 000 руб./м<sup>2</sup></div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+                <div class="col-12-4"><a href="<?= $this->url('home') ?>" class="td-n">
+                        <div class="block">
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="Реутов, ул. Комсомольская, д. 2"></div>
+                            <!--                                <div class="adress">Реутов,<br> ул. Комсомольская, д. 2</div>-->
+                            <div class="adress-map-marker">Реутов,<br> ул. Комсомольская, д. 2</div>
+                            <div class="area">52-136 м<sup>2</sup></div>
+                            <div class="cost">70 000 руб./м<sup>2</sup></div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="col-12-4"><a href="<?= $this->url('home') ?>" class="td-n">
+                        <div class="block">
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="Реутов, ул. Комсомольская, д. 2"></div>
+                            <!--                                <div class="adress">Реутов,<br> ул. Комсомольская, д. 2</div>-->
+                            <div class="adress-map-marker">Реутов,<br> ул. Комсомольская, д. 2</div>
+                            <div class="area">52-136 м<sup>2</sup></div>
+                            <div class="cost">70 000 руб./м<sup>2</sup></div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+                <div class="col-12-4"><a href="<?= $this->url('home') ?>" class="td-n">
+                        <div class="block best">
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="Реутов, ул. Комсомольская, д. 2"></div>
+                            <!--                                <div class="adress">Реутов,<br> ул. Комсомольская, д. 2</div>-->
+                            <div class="adress-map-marker">Реутов,<br> ул. Комсомольская, д. 2</div>
+                            <div class="area">52-136 м<sup>2</sup></div>
+                            <div class="cost">70 000 руб./м<sup>2</sup></div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+                <div class="col-12-4"><a href="<?= $this->url('home') ?>" class="td-n">
+                        <div class="block">
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="Реутов, ул. Комсомольская, д. 2"></div>
+                            <!--                                <div class="adress">Реутов,<br> ул. Комсомольская, д. 2</div>-->
+                            <div class="adress-map-marker">Реутов,<br> ул. Комсомольская, д. 2</div>
+                            <div class="area">52-136 м<sup>2</sup></div>
+                            <div class="cost">70 000 руб./м<sup>2</sup></div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="col-12-4"><a href="<?= $this->url('home') ?>" class="td-n">
+                        <div class="block">
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="Реутов, ул. Комсомольская, д. 2"></div>
+                            <!--                                <div class="adress">Реутов,<br> ул. Комсомольская, д. 2</div>-->
+                            <div class="adress-map-marker">Реутов,<br> ул. Комсомольская, д. 2</div>
+                            <div class="area">52-136 м<sup>2</sup></div>
+                            <div class="cost">70 000 руб./м<sup>2</sup></div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+                <div class="col-12-4"><a href="<?= $this->url('home') ?>" class="td-n">
+                        <div class="block">
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="Реутов, ул. Комсомольская, д. 2"></div>
+                            <!--                                <div class="adress">Реутов,<br> ул. Комсомольская, д. 2</div>-->
+                            <div class="adress-map-marker">Реутов,<br> ул. Комсомольская, д. 2</div>
+                            <div class="area">52-136 м<sup>2</sup></div>
+                            <div class="cost">70 000 руб./м<sup>2</sup></div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+                <div class="col-12-4"><a href="<?= $this->url('home') ?>" class="td-n">
+                        <div class="block best">
+                            <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="Реутов, ул. Комсомольская, д. 2"></div>
+                            <!--                                <div class="adress">Реутов,<br> ул. Комсомольская, д. 2</div>-->
+                            <div class="adress-map-marker">Реутов,<br> ул. Комсомольская, д. 2</div>
+                            <div class="area">52-136 м<sup>2</sup></div>
+                            <div class="cost">70 000 руб./м<sup>2</sup></div>
+                            <div class="btn btn-yl">Подробнее</div>
+                        </div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-yellow">
+    <div class="container">
+        <h1 class="title-section-2">Коммерческая недвижимость</h1><a href="home" class="link">Смотреть все</a>
+        <div id="owl-3" class="owl-slider">
+                <?php $i = 0; foreach ($this->commerce as $item) :?>
+                    <?php if ($i%3 == 0) :?>
+                    <div class="slide">
+                    <?php endif ?>
+                        <div class="col-12-4"><a href="/nedvizhimost/apartment/<?= $item->getId() ?>" class="td-n">
+                                <div class="block <?= $item->hasCategory($this->category) ? 'best' : '' ;?>">
+                                    <?php if(count($item->getImages()) > 0) :?>
+                                    <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/<?= $item->getImages()[0]->getName();?>" alt="<?= $item->getName();?>"></div>
+                                    <?php  else :?>
+                                    <div class="img-wrapper"><img src="<?= $this->basePath();?>/img/img-1.png" alt="<?= $item->getName();?>"></div>
+                                    <?php endif;?>
+
+                                    <div class="adress"><?= $item->getName(); ?></div>
+
+                                    <div class="notice"><?= mb_substr($item->getDescription(), 0, 80) ?> ...</div>
+                                    <div class="btn btn-yl">Подробнее</div>
+                                </div></a>
+                        </div>
+                    <?php if (($i+1)%3 == 0 && $i != 0) :?>
+                    </div>
+                    <?php endif ?>
+                    <?php $i++?>
+                <?php endforeach;?>
+
+        </div>
+    </div>
+</section>

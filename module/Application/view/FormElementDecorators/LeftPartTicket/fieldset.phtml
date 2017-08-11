@@ -1,0 +1,39 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 09.07.17
+ * Time: 11:26
+ */
+$mode = $this->get('mode');
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$id = $element->getAttribute('id');
+if (($currentMode = $element->getOption('mode')) == null) {
+    $currentMode = $mode;
+}
+$type = $element->getAttribute('type');
+$classStr = 'wrap-element-fieldset'. $type;
+$element->setAttribute('class', $classStr .' '. $element->getAttribute('class'));
+
+$fsAttStr=' ';
+foreach($element->getAttributes() as $k=>&$v) {
+    $fsAttStr .= sprintf('%s="%s"', $k, $v);
+}
+
+$photoEl = $element->get('photo');
+$qrEl = $element->get('qrCode');
+?>
+<div <?php echo $fsAttStr; ?> >
+    <div class="photo">
+        <?php
+            echo $this->formBranchRender($photoEl, 'default', $currentMode);
+        ?>
+    </div>
+    <div class="qr-code">
+        <div id="qr-code-element"></div>
+        <?php
+           echo $this->formBranchRender($qrEl, 'default', $currentMode);
+        ?>
+    </div>
+</div>

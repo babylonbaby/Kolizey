@@ -1,0 +1,54 @@
+div.wrap-element-row .collection {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/** подсвечивание ошибок элементов */
+.input-error-element {
+    border: 1px solid #f00 !important;
+}
+/** список ошибок скрываем, их показывает javascript */
+.input-error-list {
+    display: none;
+}
+
+.form-info-message {
+    display: inline-block;
+    float: left;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #000;
+    align-content: center;
+    border-style: none;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.form-info-message-success {
+    background-color: #ddffdd;
+    border-color: #b0ffb0;
+    border-style: solid;
+}
+
+.form-info-message-error {
+    background-color: #ffd0d0;
+    border-color: #ffb0b0;
+    border-style: solid;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* ExternalSelect */
+.ext-select-search-single-element {
+    padding-right: 0 !important;
+}
+.ext-select-search-single {
+    position: relative !important;
+}
+
+/* ExternalSelectMulti */
+.element-wrapper-ext-select-multi {
+    padding-right: 0 !important;
+}

@@ -1,0 +1,15 @@
+<h1>Просмотр пользователя</h1>
+<?php
+$form->prepare();
+$this->headTitle('Просмотр пользователя');
+
+echo $this->formBranchRender($form, 'bootstrap', 'view');
+?>
+<script>
+    $(document).ready(function(){
+        $(document).on('click', 'form button[name="buttons[close]"]', function(){
+            window.location.href = '/user';
+        });
+    });
+</script>
+

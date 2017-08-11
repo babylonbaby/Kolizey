@@ -1,0 +1,43 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 29.01.17
+ * Time: 23:32
+ */
+use Zend\Json\Json;
+
+$content = $this->get('content');
+/** @var Zend\Form\Form $formElement */
+$formElement = $this->get('formElement');
+
+$gridName = 'Grid'.$formElement->getName();
+$gridBody = Json::encode($content, false, [ 'enableJsonExprFinder'=>true, 'prettyPrint'=>true ]);
+
+?>
+function(subgrid_id, row_id) {
+    var subgrid_table_id;
+    subgrid_table_id = 'GridsubgridForm'+subgrid_id+"_t";
+    var subgrid_pager_id = "GridPager-subgridForm" + subgrid_table_id;
+    var pagerSelector = '#' + subgrid_pager_id;
+
+    var subgridHtmlBlock = "<table id=\'"+subgrid_table_id+"\' class=\'scroll\' style='width:100%;'></table>";
+    if (subgrid_pager_id != undefined) {
+        subgridHtmlBlock += "<div id=\'"+subgrid_pager_id+"\'></div>";
+    }
+    jQuery("#"+subgrid_id).html(subgridHtmlBlock);
+
+    var gridSelector = '#'+subgrid_table_id;
+    var subGridUrl = <?php echo isset($content['url']) ? $content['url'] : ''; ?>;
+    var subgrid = $(gridSelector).jqGrid(<?php
+        echo $gridBody;
+    ?>);
+    <?php
+        $gridMethods = $formElement->getOption('jqGridMethods');
+        if (is_array($gridMethods)) {
+            foreach ($gridMethods as $methodObj) {
+                echo 'subgrid.jqGrid('. $methodObj . ");\n";
+            }
+        }
+    ?>
+}

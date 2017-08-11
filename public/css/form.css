@@ -1,0 +1,205 @@
+label {font: normal 500 15px/36px "Roboto", Arial, sans-serif;}
+input, 
+textarea,
+.button {
+	width: 150px;
+	height: 36px;
+	padding: 0 10px;
+	font: normal 200 16px/36px "Roboto", Arial, sans-serif;
+	border: 1px solid #C2C2C2;
+	-webkit-border-radius: 5px;
+	   -moz-border-radius: 5px;
+			border-radius: 5px;
+}
+textarea {
+	height: 180px;
+	padding: 10px;
+	resize: none;
+	line-height: 20px;
+}
+
+/***** Segments *****/
+.segments {
+	width: 100%;
+	float: left;
+	margin-bottom: 20px;
+}
+.segments label {
+	height: 32px;
+	margin-bottom: 0 !important;
+	color: #000;
+	font: normal 200 16px/32px "Roboto", Arial, sans-serif;
+	border-right: 1px solid #c2c2c2;
+	background-color: #fff !important;
+	background-image: none !important;
+	padding: inherit !important;
+}
+.segments label:last-child {border-right: none;}
+.segmented-control {
+	border: 1px solid #c2c2c2;
+	background-color: #fff;
+	-webkit-border-radius: 0px;
+	   -moz-border-radius: 0px;
+			border-radius: 0px;
+}
+.segmented-control > label:before {background: #ffcf40;}
+.segmented-control > label:after {color: #000;}
+
+
+/***** Select *****/
+.ac_select div {position: relative;}
+.customForm .slct {
+	display: block;
+	width: 380px;
+	height: 36px;
+	text-decoration: none;
+	font: normal 200 16px/36px "Roboto", Arial, sans-serif;
+	border: 1px solid #C2C2C2;
+	-webkit-border-radius: 5px;
+	   -moz-border-radius: 5px;
+			border-radius: 5px;
+	color: #000;
+	margin: 0;
+	padding: 0px 10px;
+	background-color: #fff;
+	background-image: url(../img/icons_sprite.png);
+	background-position: right -8px top -413px;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	z-index: 2;
+	white-space:nowrap;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;	
+}
+.customForm .slct:hover {/*background-position: 170px -300px;*/}
+.customForm .slct.active {background-position: right -8px top -381px;}
+.customForm .drop {
+	margin: 0;
+	padding: 0;
+	width: 378px;
+	color: #000;
+	background-color: #fff;
+	border: 1px solid #C2C2C2;
+	display: none;
+	position: absolute;
+	z-index: 2;
+	top: 40px;
+	font: normal 200 16px/30px "Roboto", Arial, sans-serif;
+	-webkit-box-shadow: 0 0px 13px 0 rgba(0, 0, 0, .4);
+	   -moz-box-shadow: 0 0px 13px 0 rgba(0, 0, 0, .4);
+			box-shadow: 0 0px 13px 0 rgba(0, 0, 0, .4);
+}
+.customForm .drop li {
+	list-style: none;
+	cursor: pointer;
+	display: block;
+	color: #000;
+	padding: 0px 10px;
+}
+.customForm .drop li:first-child { padding-top: 9px; }
+.customForm .drop li:last-child { padding-bottom: 9px; }
+.customForm .drop li:hover {
+	background-color: #ffe38f;
+}
+
+
+/***** CheckBox *****/
+.checkbox {
+	position: absolute;
+	vertical-align: top;
+	margin: 15px 0 0 0;
+	width: 16px;
+	height: 16px;
+	left: 0;
+}
+.checkbox + label {
+	cursor: pointer;
+}
+.checkbox:not(checked) {
+	position: absolute;
+	opacity: 0;
+}
+.checkbox:not(checked) + label {
+	position: relative; 
+	padding: 0 0 0 20px; 
+}
+.checkbox:not(checked) + label:before {
+	content: '';
+	position: absolute;
+	top: 15px;
+	left: 0;
+	width: 30px;
+	height: 30px;
+	background-image: url(../img/icons_sprite.png);
+	background-position: 0px -720px;
+	background-repeat: no-repeat;
+}
+.checkbox:checked + label:before {
+	background-image: url(../img/icons_sprite.png);
+	background-position: 0px -751px;
+	background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+/*
+
+.radio {
+	background: url(../img/sprite.png) 0 0 no-repeat;
+}
+.customForm button::-moz-focus-inner {padding:0; border:0}
+.customForm button:focus {outline: 1px dotted}
+
+*/
+/* File Load */
+/*
+.file-load-block {
+	width: 310px;
+	height: 35px;
+	overflow: hidden;
+	position: relative;
+}
+.file-load-block input[type=file] {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 30px;
+	font-size: 600px;
+	z-index: 2;
+	cursor: pointer;
+	width: auto;
+}
+*/
+/* Инпут и кнопка которые под загрузчиком */
+/*
+.file-load-block input[type=text] {
+	z-index: 1;
+	width: 200px;
+	white-space:nowrap;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+}
+.file-load-block button {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 30px;
+	height: 30px;
+	background-image: url(../img/sprite.png);
+	background-position: 0px -390px;
+	background-repeat: no-repeat;
+}
+.file-load-block .button-hover {
+	background-position: 0px -420px;
+}
+*/

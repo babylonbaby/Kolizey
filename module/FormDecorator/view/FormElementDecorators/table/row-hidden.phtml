@@ -1,0 +1,7 @@
+<?php
+$element = $this->get('formElement');
+?>
+<tr style="display:none;">
+    <td class="element-label"><?php echo $this->formLabel($element); ?></td>
+    <td class="element-body"><?php echo $this->formBranchRender($element, 'default', $this->get('mode')); ?></td>
+</tr>

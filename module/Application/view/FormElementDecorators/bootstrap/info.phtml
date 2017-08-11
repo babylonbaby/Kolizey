@@ -1,0 +1,18 @@
+<?php
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$id = $element->getAttribute('id');
+
+$labelAttributes = $element->getLabelAttributes();
+$labelAttributes['class'] = 'control-label col-sm-4 ' . ((array_key_exists('class', $labelAttributes)) ? $labelAttributes['class'] : '');
+$element->setLabelAttributes($labelAttributes);
+$label = ($element->getLabel()) ? $this->formLabel($element) : '';
+
+printf('<div class="form-group wrap-element-row wrap-element-row-%s">',
+    $element->getAttribute('type'), $id
+);
+    echo $label;
+    echo "<div class='form-control-static col-sm-8'>{$element->getValue()}<br/>{$this->formElementErrors($element)}</div>";
+
+    echo $this->formHidden($element);
+echo '</div>';

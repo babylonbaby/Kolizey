@@ -1,0 +1,30 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 28.01.17
+ * Time: 15:50
+ */
+use \Zend\Form\Element\Collection;
+
+echo $this->get('content');
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+/** @var Collection $collection */
+$collection = $this->get('formElement');
+if ($collection->shouldCreateTemplate()) {
+    if ($template = $collection->getTemplateElement()) {
+        $placeholder = $collection->getTemplatePlaceholder();
+        $templateMarkup = $this->formBranchRender($template, $branch, $mode);
+        if ($template->getLabel()) {
+            $templateMarkup = $this->formLabel($template) . $templateMarkup;
+        }
+        $templateMarkup = $this->escapeHtml($templateMarkup);
+        printf('<span class="template" data-template="%s" data-placeholder="%s"></span>', $templateMarkup, $placeholder);
+    }
+}

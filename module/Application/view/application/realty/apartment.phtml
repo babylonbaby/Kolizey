@@ -1,0 +1,245 @@
+<main class="main">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="<?= $this->serverUrl('/nedvizhimost') ?>">Недвижимость</a> <span class="separator">—</span>
+            <span class="current">Купить квартиру</span>
+        </div>
+    </div>
+    <div class="extended_filters bg-overlay-gray">
+        <div class="common">
+            <select>
+                <option>Москва</option>
+                <option>Санкт-Петербург</option>
+                <option>Новосибирск</option>
+                <option>Екатеринбург</option>
+                <option>Нижний Новгород</option>
+            </select>
+
+            <select class="short">
+                <option>Купить</option>
+            </select>
+            <select class="short">
+                <option>Квартиру</option>
+            </select>
+            <select class="short">
+                <option>1 комната</option>
+            </select>
+        </div>
+        <div class="extension">
+            <select class="metro">
+                <option>Метро: Аэропорт</option>
+            </select>
+            <span class="clear"></span>
+
+            <select class="short">
+                <option>Площадь</option>
+            </select>
+            <select class="short">
+                <option>Этаж</option>
+            </select>
+            <select class="short">
+                <option>Этажность</option>
+            </select>
+
+            <div class="range_group">
+                <label for="price_end">Стоимость</label>
+                <span class="valued_range">
+          <label for="price_start">от</label>
+          <input type="range" id="price_start">
+        </span>
+                <span class="valued_range">
+          <label for="price_end">25 000 000</label>
+          <input type="range" id="price_end">
+        </span>
+                <select class="tiny">
+                    <option>Р</option>
+                </select>
+            </div>
+
+            <div class="range_group">
+                <label for="area_end">Площадь</label>
+                <span class="valued_range">
+          <label for="area_start">от</label>
+          <input type="range" id="area_start">
+        </span>
+                <span class="valued_range">
+          <label for="area_end">25 000 000</label>
+          <input type="range" id="area_end">
+        </span>
+                <span class="label">м<sup>2</sup></span>
+            </div>
+        </div> <!-- END .extended -->
+        <div class="control_pane">
+            <a href="#" class="toggle">Развернуть</a>
+            <a href="#" class="clear_all">Очистить фильтр</a>
+            <button class="btn btn-yl btn-fluid fill fl_r">Найти</button>
+        </div>
+    </div> <!-- END .extended_filters -->
+    <div class="container with_aside bg-overlay-blue">
+        <h1 class="title fw">Купить квартиру в Москве <span class="counter">(23)</span></h1>
+        <div class="filters">
+            <div class="radio_group">
+                <span class="label">Отсортировать:</span>
+                <span class="option">по цене</span>
+                <span class="option">по площади м<sup>2</sup></span>
+                <span class="option">по дате ввода в эксплуатацию</span>
+            </div>
+            <div class="checkbox_group">
+                <span class="option starred active">самые выгодные</span>
+            </div>
+            <div class="right_pane">
+                <a class="icon list" href="#"></a>
+                <a class="icon map" href="#"></a>
+            </div>
+        </div>
+    </div>
+    <div class="container with_aside">
+        <ul class="flats_list">
+
+            <li>
+                <div class="photo">
+                    <img src="<?= $this->basePath();?>/img/flat_photo.png" alt="реутов" />
+                </div>
+                <div class="desc">
+                    <div class="main">1-комнатная 30м<sup>2</sup></div>
+                    <div class="address-map-marker">Реутов, ул. Комсомольская, д. 2</div>
+                    <div class="area-marker"><strong>52-136</strong> м2</div>
+                    <div class="note-marker">Однокомнатные</div>
+                    <div class="dot-marker">Новокосино</div>
+                </div>
+                <div class="offer">
+                    <div class="price">7 000 000 руб.</div>
+                    <div class="floor">8 этаж из 12</div>
+                    <a class="buy" href="<?= $this->serverUrl('/ipoteka') ?>">Купить в ипотеку</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="photo">
+                    <img src="<?= $this->basePath();?>/img/plan.png" alt="реутов" />
+                </div>
+                <div class="desc">
+                    <div class="main">1-комнатная 30м<sup>2</sup></div>
+                    <div class="address-map-marker">Реутов, ул. Комсомольская, д. 2</div>
+                    <div class="area-marker"><strong>52-136</strong> м2</div>
+                    <div class="note-marker">Однокомнатные</div>
+                    <div class="dot-marker">Новокосино</div>
+                </div>
+                <div class="offer">
+                    <div class="price">7 000 000 руб.</div>
+                    <div class="floor">8 этаж из 12</div>
+                    <a class="buy" href="<?= $this->serverUrl('/ipoteka') ?>">Купить в ипотеку</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="photo">
+                    <img src="<?= $this->basePath();?>/img/flat_photo.png" alt="реутов" />
+                </div>
+                <div class="desc">
+                    <div class="main">1-комнатная 30м<sup>2</sup></div>
+                    <div class="address-map-marker">Реутов, ул. Комсомольская, д. 2</div>
+                    <div class="area-marker"><strong>52-136</strong> м2</div>
+                    <div class="note-marker">Однокомнатные</div>
+                    <div class="dot-marker">Новокосино</div>
+                </div>
+                <div class="offer">
+                    <div class="price">7 000 000 руб.</div>
+                    <div class="floor">8 этаж из 12</div>
+                    <a class="buy" href="<?= $this->serverUrl('/ipoteka') ?>">Купить в ипотеку</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="photo">
+                    <img src="<?= $this->basePath();?>/img/plan.png" alt="реутов" />
+                </div>
+                <div class="desc">
+                    <div class="main">1-комнатная 30м<sup>2</sup></div>
+                    <div class="address-map-marker">Реутов, ул. Комсомольская, д. 2</div>
+                    <div class="area-marker"><strong>52-136</strong> м2</div>
+                    <div class="note-marker">Однокомнатные</div>
+                    <div class="dot-marker">Новокосино</div>
+                </div>
+                <div class="offer">
+                    <div class="price">7 000 000 руб.</div>
+                    <div class="floor">8 этаж из 12</div>
+                    <a class="buy" href="<?= $this->serverUrl('/ipoteka') ?>">Купить в ипотеку</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="photo">
+                    <img src="<?= $this->basePath();?>/img/flat_photo.png" alt="реутов" />
+                </div>
+                <div class="desc">
+                    <div class="main">1-комнатная 30м<sup>2</sup></div>
+                    <div class="address-map-marker">Реутов, ул. Комсомольская, д. 2</div>
+                    <div class="area-marker"><strong>52-136</strong> м2</div>
+                    <div class="note-marker">Однокомнатные</div>
+                    <div class="dot-marker">Новокосино</div>
+                </div>
+                <div class="offer">
+                    <div class="price">7 000 000 руб.</div>
+                    <div class="floor">8 этаж из 12</div>
+                    <a class="buy" href="<?= $this->serverUrl('/ipoteka') ?>">Купить в ипотеку</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="photo">
+                    <img src="<?= $this->basePath();?>/img/plan.png" alt="реутов" />
+                </div>
+                <div class="desc">
+                    <div class="main">1-комнатная 30м<sup>2</sup></div>
+                    <div class="address-map-marker">Реутов, ул. Комсомольская, д. 2</div>
+                    <div class="area-marker"><strong>52-136</strong> м2</div>
+                    <div class="note-marker">Однокомнатные</div>
+                    <div class="dot-marker">Новокосино</div>
+                </div>
+                <div class="offer">
+                    <div class="price">7 000 000 руб.</div>
+                    <div class="floor">8 этаж из 12</div>
+                    <a class="buy" href="<?= $this->serverUrl('/ipoteka') ?>">Купить в ипотеку</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="photo">
+                    <img src="<?= $this->basePath();?>/img/flat_photo.png" alt="реутов" />
+                </div>
+                <div class="desc">
+                    <div class="main">1-комнатная 30м<sup>2</sup></div>
+                    <div class="address-map-marker">Реутов, ул. Комсомольская, д. 2</div>
+                    <div class="area-marker"><strong>52-136</strong> м2</div>
+                    <div class="note-marker">Однокомнатные</div>
+                    <div class="dot-marker">Новокосино</div>
+                </div>
+                <div class="offer">
+                    <div class="price">7 000 000 руб.</div>
+                    <div class="floor">8 этаж из 12</div>
+                    <a class="buy" href="<?= $this->serverUrl('/ipoteka') ?>">Купить в ипотеку</a>
+                </div>
+            </li>
+
+        </ul>
+        <div class="load_more_pane lefty">
+            <a href="#" class="btn btn-yl">Показать еще</a>
+        </div>
+    </div>
+
+    <aside class="aside">
+        <div class="callback_fixer">
+            <h3>Объект вам покажет</h3>
+            <div class="info">
+                <img class="expert_avatar" src="<?= $this->basePath();?>/img/expert.jpg" alt="Молодоря Мария" />
+                <span class="name">Молодоря<br />Мария</span>
+                <a href="tel:+79670711818" class="tel">+7 967 071-18-18</a>
+            </div>
+            <div class="fixer_footer">
+                <a href="#order" id="callback" class="btn btn-yl btn-fluid fill">Заказать обратный звонок</a>
+            </div>
+        </div>
+    </aside>
+
+</main>

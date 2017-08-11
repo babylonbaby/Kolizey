@@ -1,0 +1,32 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 29.01.17
+ * Time: 1:18
+ */
+use Zend\Json\Json;
+
+/** @var \Zend\Form\Element\Text $element */
+$element = $this->get('formElement');
+$branch = $this->get('branch');
+//$content = $this->get('content');
+
+$data = [
+    "edittype" => "text",
+    "index" => $element->getName(),
+    "label" => $element->getLabel(),
+    "name" => $element->getName(),
+    "searchoptions" => [
+        "sopt" => [
+            "eq",
+            "ne",
+            "bw"
+        ]
+    ],
+    "stype" => "text"
+];
+
+return $data;
+//$res = Json::encode($data, false, [ 'enableJsonExprFinder'=>true, 'prettyPrint'=>true ]);
+//echo $res;

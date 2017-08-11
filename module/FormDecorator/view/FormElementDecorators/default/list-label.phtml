@@ -1,0 +1,27 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 22.01.17
+ * Time: 23:14
+ */
+use \Zend\Form\FieldsetInterface;
+
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+/** @var \Zend\Form\Fieldset $fieldset */
+$fieldset = $this->get('formElement');
+/** @var \Zend\Form\Element $element */
+foreach ($fieldset as $element) {
+    if ($element->getLabel()) {
+        echo $this->formLabel($element);
+    }
+    echo $this->formBranchRender($element, $branch, $mode) . "\n";
+}
+
+

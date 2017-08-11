@@ -1,0 +1,84 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 04.03.17
+ * Time: 0:37
+ */
+
+/**
+ * формируем данные для рендеринга элемента через tokenfield плагин
+ * @param \Zend\Form\Element $element
+ * @return array
+ */
+$prepareElementData = function($element) {
+    $value = $element->getValue();
+    $valueList = [];
+    $tokenFieldData = [];
+    if (($separator = $element->getOption('separator')) == null) {
+        $separator = '@@';
+    }
+    if (is_array($value)) {
+        foreach ($value as $item) {
+            $valueList[] = json_encode($item);
+            $tokenFieldData[] = $item;
+        }
+        $element->setValue(implode($separator, $valueList));
+    } elseif ($value != '') {
+        $valueArr = explode($separator, $value);
+        foreach ($valueArr as $valueItem) {
+            $tokenFieldData[] = json_decode($valueItem);
+        }
+    }
+
+    $element->setAttribute('data-tokens', json_encode($tokenFieldData));
+    $element->setAttribute('data-need-tokenfield', true);
+    $element->setAttribute('data-separator', $separator);
+    $element->setAttribute('class', $element->getAttribute('class').' ext-select-multi');
+};
+
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$id = $element->getAttribute('id');
+
+$name = $element->getName();
+$value = $element->getValue();
+$prepareElementData($element);
+
+echo '<div class="element-wrapper element-wrapper-ext-select-multi">';
+if ($mode == 'view') {
+    echo $this->formText($element);
+} else {
+//    $iconClass = 'glyphicon glyphicon-search';
+//    if (($optIconClass = $element->getOption('icon-class')) != null) {
+//        $iconClass = $optIconClass;
+//    }
+    if (($clickHandler=$element->getOption('clickHandler')) == null) {
+        $clickHandler = '';
+    }
+//    $markup = sprintf('<span
+//        class="ext-select-search cursor-pointer" style="float:right;" data-clickHandler="%s">'.
+//        '<span class="%s"></span></span></div>',
+//        $clickHandler,
+//        $iconClass
+//    );
+//    $buttonTmpl = json_encode($markup); //$this->escapehtmlattr($markup);
+//    $element->setAttribute('data-button-template', $buttonTmpl);
+
+    echo $this->formText($element);
+
+    $markup = sprintf('<div
+        class="button ext-select-search ext-select-search-multi cursor-pointer"  data-clickHandler="%s">+'.
+        '</div>',
+        $clickHandler
+    );
+    echo $markup;
+}
+echo '</div>';

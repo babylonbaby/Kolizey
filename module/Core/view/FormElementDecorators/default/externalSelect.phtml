@@ -1,0 +1,77 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 04.03.17
+ * Time: 0:37
+ */
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+/** @var \Zend\Form\Element $element */
+$element = $this->get('formElement');
+$id = $element->getAttribute('id');
+
+$name = $element->getName();
+$value = $element->getValue();
+$errorMsg = $errClass = '';
+if (isset($options['markupError'])) {
+    $errorMsg = $options['markupError'];
+    $element->setAttribute('class', $element->getAttribute('class') . ' input-error-element');
+}
+
+
+echo '<div class="element-wrapper">';
+if ($mode == 'view') {
+    printf('<span id="info-%s" class="info-%s %s">%s</span>',
+        $id, $id,
+        $element->getAttribute('class'),
+        (isset($value['value']) ? $value['value'] : '')
+    );
+    echo $errorMsg;
+
+    $element->setName($name.'[id]');
+    $element->setValue((isset($value['id']) ? $value['id'] : ''));
+    echo $this->formHidden($element);
+} else {
+    $input = new \Zend\Form\Element\Text();
+    $input->setName($name.'[value]')
+        ->setAttribute('readonly', 'readonly')
+        ->setValue((isset($value['value']) ? $value['value'] : ''))
+        ->setAttribute('id', $id . '-value');
+
+    echo $errorMsg;
+
+    $hidden = new \Zend\Form\Element\Hidden();
+    $hiddenName = $name.'[id]';
+    $hidden->setName($name.'[id]')
+        ->setValue((isset($value['id']) ? $value['id'] : ''))
+        ->setAttribute('id', $id . '-id');
+
+    $onClick='';
+    if (($clickHandler=$element->getOption('clickHandler')) == null) {
+        $clickHandler = '';
+    }
+
+    $iconClass = 'glyphicon glyphicon-search';
+    if (($optIconClass = $element->getOption('icon-class')) != null) {
+        $iconClass = $optIconClass;
+    }
+    $markup = sprintf('<div id="ext-select-%s" class="ext-select ext-select-search-single-element ext-select-%s %s">%s%s<span
+        class="ext-select-search ext-select-search-single cursor-pointer" data-clickHandler="%s">'.
+        '<span class="%s"></span></span></div>',
+        $id, $id,
+        $element->getAttribute('class'),
+        $this->formText($input),
+        $this->formHidden($hidden),
+        $clickHandler,
+        $iconClass
+    );
+
+    echo $markup;
+}
+echo '</div>';

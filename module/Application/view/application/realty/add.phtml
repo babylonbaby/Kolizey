@@ -1,0 +1,5 @@
+<?php
+/** @var Zend\Form\Form $form */
+$form = $this->form;
+$form->prepare();
+echo '<div class="container">' . $this->formBranchRender($form, 'bootstrap') . '</div>';

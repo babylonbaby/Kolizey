@@ -1,0 +1,16 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kota
+ * Date: 23.01.17
+ * Time: 22:53
+ */
+$options = $this->get('options');
+if (array_key_exists('branch', $options)) {
+    $branch = $options['branch'];
+} else {
+    $branch = $this->get('branch');
+}
+$mode = $this->get('mode');
+$element = $this->get('formElement');
+echo $this->formButton($element);

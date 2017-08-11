@@ -1,0 +1,31 @@
+{
+    "name": "/statemachine",
+    "description": " simple statemachine module",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Kotrekhov Andrey",
+            "email": "kotrekhov@f-technology.ru"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@git.f-technology.ru:/archiver.git"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "zendframework/zendframework": ">=3.0.0",
+        "doctrine/dbal": ">=2.3.3",
+        "doctrine/doctrine-orm-module": ">=0.7"
+    },
+    "autoload": {
+	"psr-4": {
+            "StateMachine\\": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

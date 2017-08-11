@@ -1,0 +1,20 @@
+<h1>Авторизация</h1>
+<?php
+$this->headTitle('Авторизация');
+
+//$this->mainMenu()->setActiveItemId('login');
+
+$form->getBaseFieldset()->get('userName')->setAttributes([
+        'class'=>'form-control',
+        'placeholder'=>'Имя пользователя',
+        'required' => true,
+        'autofocus' => true
+    ]);
+
+$form->getBaseFieldset()->get('password')->setAttributes([
+        'class'=>'form-control',
+        'placeholder'=>'Пароль',
+        'required' => true,
+    ]);
+
+echo $this->formBranchRender($form, 'bootstrap');

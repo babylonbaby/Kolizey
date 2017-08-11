@@ -1,0 +1,158 @@
+<main class="main">
+    <div class="container with_aside">
+        <div class="breadcrumbs">
+            <a href="#">Покупка</a> <span class="separator">—</span>
+            <a href="#">Квартира</a> <span class="separator">—</span>
+            <span class="current">Ипотечный калькулятор</span>
+        </div>
+    </div>
+    <div class="container with_aside text-content">
+        <h1>ИПОТЕЧНЫЙ КАЛЬКУЛЯТОР</h1>
+        <div class="summary">
+            <p>
+                Для быстрого расчета ипотечного кредита мы предлагаем вам простой, удобный и универсальный ипотечный
+                калькулятор, позволяющий узнать основные параметры кредита — сумму кредита, размер ежемесячного платежа и
+                необходимый доход. Чтобы использовать ипотечный калькулятор, необходимо ввести предполагаемую стоимость
+                квартиры, размер первоначального взноса и срок кредитования. Вы можете воспользоваться ипотечным калькулятором
+                прямо сейчас.
+            </p>
+            <p>
+                Расчеты ипотечного калькулятора являются предварительными. За точными расчетами для Вашего конкретного случая
+                обращайтесь к ипотечному менеджеру по телефону +7 (495) 223-8888
+            </p>
+        </div>
+        <div class="calculator">
+            <div class="lefty">
+                <div class="range_group">
+                    <label class="ml" for="price">Стоимость</label>
+                    <span class="valued_range">
+            <label for="price">от</label>
+            <input type="range" id="price">
+          </span>
+                    <select class="tiny">
+                        <option>Р</option>
+                    </select>
+                </div>
+                <div class="range_group">
+                    <label class="ml" for="percent">Ипотечная ставка</label>
+                    <span class="valued_range">
+            <label for="percent">от</label>
+            <input type="range" id="percent">
+          </span>
+                    <span class="label">%</span>
+                </div>
+                <div class="range_group">
+                    <label class="ml" for="first">Первоначальный взнос</label>
+                    <span class="valued_range">
+            <label for="first">от</label>
+            <input type="range" id="first">
+          </span>
+                    <span class="label">руб.</span>
+                </div>
+                <div class="range_group">
+                    <label class="ml" for="period">Срок кредитования</label>
+                    <span class="valued_range">
+            <label for="period">от</label>
+            <input type="range" id="percent">
+          </span>
+                    <span class="label">мес.</span>
+                </div>
+                <div class="control_pane">
+                    <button class="btn btn-yl btn-fluid fill fl_r">Рассчитать</button>
+                </div>
+            </div> <!-- END .calculator .lefty -->
+            <div class="righty">
+                <h3>Ежемесячный взнос</h3>
+                <output>100 000</output> <span class="label">руб.</span>
+                <div class="control_pane">
+                    <a href="#order" id="mortgage" >Оставить заявку</a>
+                    <a href="#" class="print">Распечатать</a>
+                </div>
+            </div>
+        </div> <!-- END .calculator -->
+        <ul class="propositions">
+
+            <li>
+                <div class="img">
+
+                    <img src="<?= $this->basePath();?>/img/bank_logo_vtb.png" alt="Банк Москвы" />
+
+                </div>
+                <h3 class="name">Банк Москвы</h3>
+                <h4 class="conditions">Условия кредитования</h4>
+                <dl>
+                    <dt>Годовые проценты</dt>
+                    <dd>10,9 % - при сумме кредита до 8 000 000 рублей; 12,85 % - при сумме кредита свыше 8 000 000 рублей.</dd>
+
+                    <dt>Первоначальный взнос</dt>
+                    <dd>От 15 % (от 20 % - программа "Ипотека с государственной поддержкой").</dd>
+
+                    <dt>Срок Кредитования</dt>
+                    <dd>До 30 лет.</dd>
+
+                    <dt>Требования</dt>
+                    <dd>
+                        Возраст – от 21 до 60 лет на момент погашения кредита для женщин, и до 65 лет для мужчин, индивидуально - до
+                        75 лет. Место регистрации – РФ. Гражданство – не имеет значения. Трудовой стаж – общий - не менее 1 года, на
+                        последнем месте работы – 1 мес. с момента прохождения испытательного срока.
+                    </dd>
+
+                    <dt>Подтверждение дохода</dt>
+                    <dd>По справке 2-НДФЛ и по форме банка или организации.</dd>
+
+                    <dt>Расходы</dt>
+                    <dd>Страхование - личное, от риска утраты и повреждения квартиры (после приобретения права собственности).</dd>
+                </dl>
+            </li>
+
+            <li>
+                <div class="img">
+
+                    <img src="<?= $this->basePath();?>/img/bank_logo_open.png" alt="Открытие" />
+
+                </div>
+                <h3 class="name">Банк Москвы</h3>
+                <h4 class="conditions">Условия кредитования</h4>
+                <dl>
+                    <dt>Годовые проценты</dt>
+                    <dd>10,9 % - при сумме кредита до 8 000 000 рублей; 12,85 % - при сумме кредита свыше 8 000 000 рублей.</dd>
+
+                    <dt>Первоначальный взнос</dt>
+                    <dd>От 15 % (от 20 % - программа "Ипотека с государственной поддержкой").</dd>
+
+                    <dt>Срок Кредитования</dt>
+                    <dd>До 30 лет.</dd>
+
+                    <dt>Требования</dt>
+                    <dd>
+                        Возраст – от 21 до 60 лет на момент погашения кредита для женщин, и до 65 лет для мужчин, индивидуально - до
+                        75 лет. Место регистрации – РФ. Гражданство – не имеет значения. Трудовой стаж – общий - не менее 1 года, на
+                        последнем месте работы – 1 мес. с момента прохождения испытательного срока.
+                    </dd>
+
+                    <dt>Подтверждение дохода</dt>
+                    <dd>По справке 2-НДФЛ и по форме банка или организации.</dd>
+
+                    <dt>Расходы</dt>
+                    <dd>Страхование - личное, от риска утраты и повреждения квартиры (после приобретения права собственности).</dd>
+                </dl>
+            </li>
+
+        </ul> <!-- END .propositions -->
+    </div>
+    <aside class="aside">
+        <div class="callback_fixer">
+            <h3>Объект вам покажет</h3>
+            <div class="info">
+                <img class="expert_avatar" src="<?= $this->basePath();?>/img/expert.jpg" alt="Молодоря Мария" />
+                <span class="name">Молодоря<br />Мария</span>
+                <a href="tel:+79670711818" class="tel">+7 967 071-18-18</a>
+            </div>
+            <div class="fixer_footer">
+                <a href="#order" id="callback" class="btn btn-yl btn-fluid fill">Заказать обратный звонок</a>
+            </div>
+        </div>
+    </aside>
+
+</main>
+
